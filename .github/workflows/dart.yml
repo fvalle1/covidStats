@@ -22,4 +22,4 @@ jobs:
         args: pub get
      - uses: steebchen/flutter@v1.1.0
        with:
-        args: pub test
+        args: pub run test
