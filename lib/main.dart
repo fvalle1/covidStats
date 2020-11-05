@@ -76,12 +76,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children:
                       [
-                      Text.rich(TextSpan(text: 'Nuovi positivi: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.nuovi_positivi}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red, fontSize:18))])),
-                      Text.rich(TextSpan(text: 'Terapie intensive: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.terapia_intensiva}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue, fontSize:18))])),
-                      Text.rich(TextSpan(text: 'Totale positivi: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.totale_positivi}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize:18))])),
-                      Text.rich(TextSpan(text: 'Deceduti: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.deceduti}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize:18))])),
-                      Text.rich(TextSpan(text: 'Tamponi: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.tamponi}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize:18))])),
-                      Text.rich(TextSpan(text: 'Frazione tamponi: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.frazione_tamponi.toStringAsFixed(2)} %', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red, fontSize:18))])),
+                      Text.rich(TextSpan(text: 'Nuovi positivi: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.nuovi_positivi}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red, fontSize:20))])),
+                      Text.rich(TextSpan(text: 'Terapie intensive: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.terapia_intensiva}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue, fontSize:20))])),
+                      Text.rich(TextSpan(text: 'Totale positivi: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.totale_positivi}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize:20))])),
+                      Text.rich(TextSpan(text: 'Deceduti: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.deceduti}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize:20))])),
+                      Text.rich(TextSpan(text: 'Tamponi: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.tamponi}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize:20))])),
+                      Text.rich(TextSpan(text: 'Frazione tamponi: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.frazione_tamponi.toStringAsFixed(2)} %', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red, fontSize:20))])),
+                      Text.rich(TextSpan(text: 'Ultimo aggiornamento: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.data}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green, fontSize:20))])),
                       //Spacer(flex:1),
                       ]
                       );
