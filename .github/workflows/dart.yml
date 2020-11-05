@@ -14,9 +14,10 @@ jobs:
     container:
       image:  google/dart:latest
 
-    steps:
+     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
-      run: flutter pub get
+    - uses: jddeep/Flutter-Runner@1.2.0
     - name: Run tests
-      run: flutter pub run test
+    - run: flutter pub get
+    - run: flutter pub run test
