@@ -17,7 +17,7 @@ jobs:
     steps:
     - name: Install dependencies
       uses: actions/checkout@v2
-    - uses: jddeep/Flutter-Runner@1.2.0
+    - uses: steebchen/flutter@v1.1.0
     - name: Run tests
       run: flutter pub get
     - run: flutter build web
