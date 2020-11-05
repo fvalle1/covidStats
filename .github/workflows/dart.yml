@@ -15,9 +15,10 @@ jobs:
       image:  google/dart:latest
 
      steps:
-    - uses: actions/checkout@v2
-    - name: Install dependencies
-    - uses: jddeep/Flutter-Runner@1.2.0
-    - name: Run tests
-    - run: flutter pub get
-    - run: flutter pub run test
+     - name: Install dependencies
+       uses: actions/checkout@v2
+     - name: Install dependencies
+       uses: jddeep/Flutter-Runner@1.2.0
+     - name: Run tests
+       run: flutter pub get
+     - run: flutter pub run test
