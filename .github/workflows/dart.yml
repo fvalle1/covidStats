@@ -19,6 +19,5 @@ jobs:
        uses: actions/checkout@v2
      - name: Install dependencies
        uses: steebchen/flutter@v1.1.0
-     - name: Run tests
-       run: flutter pub get
-     - run: flutter pub run test
+       with:
+        args: pub get
