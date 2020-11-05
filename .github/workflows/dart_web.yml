@@ -20,6 +20,3 @@ jobs:
     - uses: steebchen/flutter@v1.1.0
       with:
         args: pub get
-    - uses: steebchen/flutter@v1.1.0
-      with:
-        args: build web
