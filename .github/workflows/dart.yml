@@ -14,10 +14,12 @@ jobs:
     container:
       image:  google/dart:latest
 
-     steps:
+    steps:
      - name: Install dependencies
        uses: actions/checkout@v2
-     - name: Install dependencies
-       uses: steebchen/flutter@v1.1.0
+     - uses: steebchen/flutter@v1.1.0
        with:
         args: pub get
+     - uses: steebchen/flutter@v1.1.0
+       with:
+        args: pub test
