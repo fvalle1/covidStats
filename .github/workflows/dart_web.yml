@@ -18,5 +18,8 @@ jobs:
     - name: Install dependencies
       uses: actions/checkout@v2
     - uses: steebchen/flutter@v1.1.0
-        with:
-	        args: flutter pub get && flutter build web
+      with:
+        args: pub get
+    - uses: steebchen/flutter@v1.1.0
+      with:
+        args: build web
