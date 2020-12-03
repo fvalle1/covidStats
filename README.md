@@ -7,7 +7,7 @@
 
 A new Flutter project to monitor COVID-19 in Italy.
 
-# Web version
+## Web version
 
 a web version is deployed at [https://covidstats.codemagic.app/](https://covidstats.codemagic.app/#/)
 
