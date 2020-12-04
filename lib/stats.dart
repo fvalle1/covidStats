@@ -35,27 +35,27 @@ class Stats {
       this.casi,
       this.data}) {
     this.frazioneTamponi = this.nuoviPositivi / this.tamponi * 100;
-    this.deltaFrazioneTamponi = this.previousPositivi / this.previousTamponi * 100;
+    this.deltaFrazioneTamponi = (this.previousPositivi).toDouble() / this.previousTamponi * 100;
   }
 
   factory Stats.fromFetchedJson(List<dynamic> json) {
     var latest = json.last;
     var previous = json[json.length - 2];
     return Stats(
-      totalePositivi: latest["totale_positivi"],
-      previousPositivi: previous["nuovi_positivi"],
-      nuoviPositivi: latest["nuovi_positivi"],
-      terapiaIntensiva: latest["terapia_intensiva"],
+      totalePositivi: (latest["totale_positivi"]).toInt(),
+      previousPositivi: (previous["nuovi_positivi"]).toInt(),
+      nuoviPositivi: (latest["nuovi_positivi"]).toInt(),
+      terapiaIntensiva: (latest["terapia_intensiva"]).toInt(),
       deltaTerapiaIntensiva:
-          latest["terapia_intensiva"] - previous["terapia_intensiva"],
-      ricoverati: latest["totale_ospedalizzati"],
+          (latest["terapia_intensiva"] - previous["terapia_intensiva"]).toInt(),
+      ricoverati: (latest["totale_ospedalizzati"]).toInt(),
       deltaRicoverati:
-          latest["totale_ospedalizzati"] - previous["totale_ospedalizzati"],
-      deceduti: latest["deceduti"] - previous["deceduti"],
-      deltaDeceduti: previous["deceduti"] - json[json.length - 3]["deceduti"],
-      tamponi: latest["tamponi"] - previous["tamponi"],
-      previousTamponi: previous["tamponi"] - json[json.length - 3]["tamponi"],
-      casi: latest["casi_testati"] - previous["casi_testati"],
+          (latest["totale_ospedalizzati"] - previous["totale_ospedalizzati"]).toInt(),
+      deceduti: (latest["deceduti"] - previous["deceduti"]).toInt(),
+      deltaDeceduti: (previous["deceduti"] - json[json.length - 3]["deceduti"]).toInt(),
+      tamponi: (latest["tamponi"] - previous["tamponi"]).toInt(),
+      previousTamponi: (previous["tamponi"] - json[json.length - 3]["tamponi"]).toInt(),
+      casi: (latest["casi_testati"] - previous["casi_testati"]).toInt(),
       data: DateFormat("dd/MM/yyyy").format(DateTime.parse(latest["data"])),
     );
   }
