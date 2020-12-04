@@ -25,23 +25,21 @@ class PlotSeries {
         for (var i = 1; i < json.length; i++)
           _data.add(MeasureData(
               day: i,
-              value: (json[i][keys[0]] - json[i - 1][keys[0]]).abs() /
-                  (json[i][keys[1]] - json[i - 1][keys[1]]).abs() *
-                  100));
+              value: double.parse('${(json[i][keys[0]] - json[i - 1][keys[0]]).abs() /(json[i][keys[1]] - json[i - 1][keys[1]]).abs() *100}')));
       } else {
         for (var i = 1; i < json.length; i++)
           _data.add(
-              MeasureData(day: i, value: json[i][label] - json[i - 1][label]));
+              MeasureData(day: i, value: double.parse('${json[i][label] - json[i - 1][label]}')));
       }
     } else {
       if (label.contains("/")) {
         var keys = label.split("/");
         for (var i = 0; i < json.length; i++)
           _data.add(MeasureData(
-              day: i, value: json[i][keys[0]] / json[i][keys[1]] * 100));
+              day: i, value: double.parse('${json[i][keys[0]] / json[i][keys[1]] * 100}')));
       } else {
         for (var i = 0; i < json.length; i++)
-          _data.add(MeasureData(day: i, value: json[i][label]));
+          _data.add(MeasureData(day: i, value: double.parse('${json[i][label]}')));
       }
     }
     return PlotSeries(series: [
