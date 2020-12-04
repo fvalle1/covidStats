@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 
 class Stats {
   int totalePositivi;
+  int previousTotalePositivi;
   int nuoviPositivi;
   int previousPositivi;
   int terapiaIntensiva;
@@ -22,6 +23,7 @@ class Stats {
 
   Stats(
       {this.totalePositivi,
+      this.previousTotalePositivi,
       this.nuoviPositivi,
       this.previousPositivi,
       this.terapiaIntensiva,
@@ -43,6 +45,7 @@ class Stats {
     var previous = json[json.length - 2];
     return Stats(
       totalePositivi: (latest["totale_positivi"]).toInt(),
+      previousTotalePositivi: (previous["totale_positivi"]).toInt(),
       previousPositivi: (previous["nuovi_positivi"]).toInt(),
       nuoviPositivi: (latest["nuovi_positivi"]).toInt(),
       terapiaIntensiva: (latest["terapia_intensiva"]).toInt(),

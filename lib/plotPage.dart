@@ -66,7 +66,7 @@ class _MyPlotPageState extends State<MyPlotPage> {
                     onPressed: () {
                       setState(() {
                         _currentTrend = "Percentuale positivi";
-                        _futurePlotData = fetchPlotSeries("totale_positivi/tamponi", delta:true);
+                        _futurePlotData = fetchPlotSeries("nuovi_positivi/tamponi", delta:false, delta_denominator:true);
                       });
                     }),
                 ElevatedButton(

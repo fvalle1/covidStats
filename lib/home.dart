@@ -60,9 +60,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       Text.rich(TextSpan(text: 'Nuovi positivi: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.nuoviPositivi}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red, fontSize:20))])),
                       Text.rich(TextSpan(text: 'Terapie intensive: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.terapiaIntensiva} (${snapshot.data.deltaTerapiaIntensiva})', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blue, fontSize:20))])),
                       Text.rich(TextSpan(text: 'Ricoverati: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.ricoverati} (${snapshot.data.deltaRicoverati})', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red, fontSize:20))])),
-                      Text.rich(TextSpan(text: 'Totale positivi: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.totalePositivi}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize:20))])),
+                      Text.rich(TextSpan(text: 'Totale positivi: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.totalePositivi} (${snapshot.data.totalePositivi-snapshot.data.previousTotalePositivi})', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red, fontSize:20))])),
                       Text.rich(TextSpan(text: 'Deceduti: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.deceduti} (${snapshot.data.deltaDeceduti})', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize:20))])),
-                      Text.rich(TextSpan(text: 'Tamponi: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.tamponi}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize:20))])),
+                      Text.rich(TextSpan(text: 'Tamponi: ', children: <TextSpan>[TextSpan(text: '${snapshot.data.tamponi}', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.green, fontSize:20))])),
                       Wrap(
                         direction: Axis.horizontal,
                         children: [
