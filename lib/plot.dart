@@ -17,37 +17,46 @@ class PlotSeries {
 
   List<charts.Series<MeasureData, int>> series;
 
-  factory PlotSeries.makeSeries(List<dynamic> json, String label, bool delta, bool delta_denominator) {
+  factory PlotSeries.makeSeries(
+      List<dynamic> json, String label, bool delta, bool deltaDenominator) {
     _data = [];
     if (label.contains("/")) {
       var keys = label.split("/");
-      for (var i = 1; i < json.length; i++){
+      for (var i = 1; i < json.length; i++) {
         var numerator = 0.0;
-        var denominator = 1.0; 
-        if(delta){
-          numerator = double.parse('${(json[i][keys[0]] - json[i - 1][keys[0]]).toDouble().abs()}');
-        }else{
+        var denominator = 1.0;
+        if (delta) {
+          numerator = double.parse(
+              '${(json[i][keys[0]] - json[i - 1][keys[0]]).toDouble().abs()}');
+        } else {
           numerator = double.parse('${(json[i][keys[0]]).abs()}');
         }
-        if(delta_denominator){
-          denominator = double.parse('${(json[i][keys[1]] - json[i - 1][keys[1]]).abs()}');
-        }else{
+        if (deltaDenominator) {
+          denominator = double.parse(
+              '${(json[i][keys[1]] - json[i - 1][keys[1]]).abs()}');
+        } else {
           denominator = double.parse('${json[i][keys[1]]}');
         }
+        // avoid division by zero
+        if (denominator.abs() <= 1e-10) {
+          numerator = 0.0;
+          denominator = 1.0;
+        }
         _data.add(MeasureData(
-                  day: i,
-                  value: double.parse('${numerator / denominator * 100}')));
-          }
-    }else{
-      if(delta){
-          for (var i = 1; i < json.length; i++){
-              _data.add(
-                  MeasureData(day: i, value: double.parse('${json[i][label] - json[i - 1][label]}')));
-          }
-      }else{
-        for (var i = 0; i < json.length; i++){
-              _data.add(MeasureData(day: i, value: double.parse('${json[i][label]}')));
-          }
+            day: i, value: double.parse('${numerator / denominator * 100}')));
+      }
+    } else {
+      if (delta) {
+        for (var i = 1; i < json.length; i++) {
+          _data.add(MeasureData(
+              day: i,
+              value: double.parse('${json[i][label] - json[i - 1][label]}')));
+        }
+      } else {
+        for (var i = 0; i < json.length; i++) {
+          _data.add(
+              MeasureData(day: i, value: double.parse('${json[i][label]}')));
+        }
       }
     }
     return PlotSeries(series: [
@@ -63,17 +72,19 @@ class PlotSeries {
   PlotSeries({this.series});
 }
 
-Future<PlotSeries> fetchPlotSeries(String label, {bool delta = false, bool delta_denominator = false}) async {
+Future<PlotSeries> fetchPlotSeries(String label,
+    {bool delta = false, bool deltaDenominator = false}) async {
   final response = await http.get(
       'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json');
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
-    return PlotSeries.makeSeries(jsonDecode(response.body), label, delta, delta_denominator);
+    return PlotSeries.makeSeries(
+        jsonDecode(response.body), label, delta, deltaDenominator);
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
-    throw Exception('Failed to load album');
+    throw Exception('Failed to load');
   }
 }

@@ -20,7 +20,7 @@ class _MyPlotPageState extends State<MyPlotPage> {
   @override
   void initState() {
     super.initState();
-    _currentTrend = "Here some plots";
+    _currentTrend = "Qualche plot";
     _futurePlotData = fetchPlotSeries("totale_positivi");
   }
 
@@ -54,7 +54,7 @@ class _MyPlotPageState extends State<MyPlotPage> {
               spacing: 1,
               children: [
                 ElevatedButton(
-                    child: Text("totale_positivi"),
+                    child: Text("totale positivi"),
                     onPressed: () {
                       setState(() {
                         _currentTrend = "Totale positivi";
@@ -62,15 +62,15 @@ class _MyPlotPageState extends State<MyPlotPage> {
                       });
                     }),
                 ElevatedButton(
-                    child: Text("frazione_positivi"),
+                    child: Text("percentuale positivi"),
                     onPressed: () {
                       setState(() {
                         _currentTrend = "Percentuale positivi";
-                        _futurePlotData = fetchPlotSeries("nuovi_positivi/tamponi", delta:false, delta_denominator:true);
+                        _futurePlotData = fetchPlotSeries("nuovi_positivi/tamponi", delta:false, deltaDenominator:true);
                       });
                     }),
                 ElevatedButton(
-                    child: Text("terapie_intensive"),
+                    child: Text("terapie intensive"),
                     onPressed: () {
                       setState(() {
                         _currentTrend = "Terapia intensiva";
@@ -86,7 +86,7 @@ class _MyPlotPageState extends State<MyPlotPage> {
                       });
                     }),
                 ElevatedButton(
-                    child: Text("nuovi_positivi"),
+                    child: Text("nuovi positivi"),
                     onPressed: () {
                       setState(() {
                         _currentTrend = "Nuovi positivi";

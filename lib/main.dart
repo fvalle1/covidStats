@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'home.dart';
 import 'plotPage.dart';
+import 'regionalPage.dart';
 
 void main() {
   runApp(MyApp());
@@ -39,7 +40,8 @@ class _MyViewState extends State<MyView> {
 
   static List<Widget> _pagesOptions = [
     MyHomePage(title: 'Main Statistics'),
-    MyPlotPage(title: "trends")
+    MyPlotPage(title: "Trends"),
+    MyRegionalPage(title: "Regional")
   ];
 
   @override
@@ -61,6 +63,10 @@ class _MyViewState extends State<MyView> {
             icon: Icon(Icons.bar_chart),
             label: 'Plots',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            label: 'Regional',
+          )
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue[300],

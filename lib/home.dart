@@ -3,18 +3,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'stats.dart';
 
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-
+class MyHomePage extends StatelessWidget {
+  MyHomePage({Key key, this.title=""}) : super(key: key);
   final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   Future<Stats> _futureStatistics;
 
 
@@ -28,13 +19,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  void initState(){
-    super.initState();
-    _futureStatistics = fetchData();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    _futureStatistics = fetchData();
+
     return Scaffold(
       body: Center(
         child: Column(
@@ -42,7 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
           Container(
             child: Text(
-              'Here some statistics',
+              'Qualche statistica',
               style: TextStyle(
                 fontSize: 24
                 )
