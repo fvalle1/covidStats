@@ -22,20 +22,28 @@ class PlotSeries {
     _data = [];
     if (label.contains("/")) {
       var keys = label.split("/");
-      for (var i = 1; i < json.length; i++) {
+      for (var i = 4; i < json.length - 4; i++) {
         var numerator = 0.0;
-        var denominator = 1.0;
+        var denominator = 0.0;
         if (delta) {
-          numerator = double.parse(
-              '${(json[i][keys[0]] - json[i - 1][keys[0]]).toDouble().abs()}');
+          for(int j= i-3; j<i+4;j++){
+            numerator += double.parse(
+              '${(json[j][keys[0]] - json[j - 1][keys[0]]).toDouble().abs()}');
+          }
         } else {
-          numerator = double.parse('${(json[i][keys[0]]).abs()}');
+          for(int j= i-3; j<i+4;j++){
+            numerator += double.parse('${(json[j][keys[0]]).abs()}');
+          }
         }
         if (deltaDenominator) {
-          denominator = double.parse(
-              '${(json[i][keys[1]] - json[i - 1][keys[1]]).abs()}');
+          for(int j= i-3; j<i+4;j++){
+          denominator += double.parse(
+              '${(json[j][keys[1]] - json[j - 1][keys[1]]).abs()}');
+          }
         } else {
-          denominator = double.parse('${json[i][keys[1]]}');
+          for(int j= i-3; j<i+4;j++){
+            denominator = double.parse('${json[j][keys[1]]}');
+          }
         }
         // avoid division by zero
         if (denominator.abs() <= 1e-10) {
@@ -47,15 +55,23 @@ class PlotSeries {
       }
     } else {
       if (delta) {
-        for (var i = 1; i < json.length; i++) {
+        for (var i = 4; i < json.length-3; i++) {
+          double val = 0;
+          for(int j= i-3; j<i+4;j++){
+            val += double.parse('${json[j][label] - json[j - 1][label]}');
+          } 
           _data.add(MeasureData(
               day: i,
-              value: double.parse('${json[i][label] - json[i - 1][label]}')));
+              value: double.parse('${val/7.0}')));
         }
       } else {
-        for (var i = 0; i < json.length; i++) {
+        for (var i = 4; i < json.length-4; i++) {
+          double val = 0;
+          for(int j= i-3; j<i+4;j++){
+            val += double.parse('${json[j][label]}');
+          } 
           _data.add(
-              MeasureData(day: i, value: double.parse('${json[i][label]}')));
+              MeasureData(day: i, value: double.parse('${val/7.0}')));
         }
       }
     }
