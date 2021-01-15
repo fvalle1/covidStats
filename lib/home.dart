@@ -21,7 +21,7 @@ class MyHomePage extends StatelessWidget {
   }
 
   _launchURLCommisssarioApp() async {
-    const url = ' https://github.com/italia/covid19-opendata-vaccini';
+    const url = 'https://github.com/italia/covid19-opendata-vaccini';
     if (await canLaunch(url)) {
       await launch(url, forceSafariVC: true, forceWebView: true);
     } else {
