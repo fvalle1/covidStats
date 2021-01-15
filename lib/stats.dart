@@ -37,7 +37,7 @@ class Stats {
       this.casi,
       this.data}) {
     this.frazioneTamponi = this.nuoviPositivi / this.tamponi * 100;
-    this.deltaFrazioneTamponi = (this.previousPositivi).toDouble() / this.previousTamponi * 100;
+    this.deltaFrazioneTamponi = (this.previousPositivi).toDouble().abs() / this.previousTamponi * 100;
   }
 
   factory Stats.fromFetchedJson(List<dynamic> json) {
