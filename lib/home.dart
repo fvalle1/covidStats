@@ -56,8 +56,20 @@ class MyHomePage extends StatelessWidget {
                                 TextSpan(
                                     text: NumberFormat.compact(locale: "it_IT")
                                             .format(snapshot
-                                                .data.dosiSomministrate) +
+                                                .data.personeVaccinate) +
                                         ' (${snapshot.data.fracPopolazione.toStringAsFixed(2)}% della popolazione)',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.deepPurple,
+                                        fontSize: 20))
+                              ])),
+                              Text.rich(TextSpan(
+                              text: 'Dosi: ',
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: NumberFormat.compact(locale: "it_IT")
+                                            .format(snapshot
+                                                .data.dosiSomministrate),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.deepPurple,
