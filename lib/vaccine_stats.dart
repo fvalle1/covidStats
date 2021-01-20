@@ -17,7 +17,7 @@ class VaccineStats {
     for (var item in json) {
       var primaDose = item["prima_dose"];
       var secondaDose = item["seconda_dose"];
-      personeVaccinate += primaDose;
+      personeVaccinate += secondaDose;
       dosiSomministrate += primaDose + secondaDose;
     }
     return VaccineStats(
