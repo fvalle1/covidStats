@@ -17,7 +17,18 @@ class VaccineStats {
     for (var item in json) {
       var primaDose = item["prima_dose"];
       var secondaDose = item["seconda_dose"];
-      personeVaccinate += secondaDose;
+      var fornitore = item["fornitore"];
+      //some vaccines requires two doses
+      switch (fornitore) {
+        case "Pfizer\/BioNTech":
+          personeVaccinate += secondaDose;
+          break;
+        case "Moderna":
+          personeVaccinate += secondaDose;
+          break;
+        default:
+          personeVaccinate += primaDose;
+      }
       dosiSomministrate += primaDose + secondaDose;
     }
     return VaccineStats(

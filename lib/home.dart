@@ -64,7 +64,7 @@ class MyHomePage extends StatelessWidget {
                                         fontSize: 20))
                               ])),
                               Text.rich(TextSpan(
-                              text: 'Dosi: ',
+                              text: 'Dosi somministrate: ',
                               children: <TextSpan>[
                                 TextSpan(
                                     text: NumberFormat.compact(locale: "it_IT")
