@@ -20,7 +20,7 @@ class _MyPlotPageState extends State<MyPlotPage> {
   @override
   void initState() {
     super.initState();
-    _currentTrend = "Qualche plot";
+    _currentTrend = "Totale positivi";
     _futurePlotData = fetchPlotSeries("totale_positivi");
   }
 
