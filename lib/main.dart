@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 import 'plotPage.dart';
 import 'regionalPage.dart';
-import 'package:upgrader/upgrader.dart';
 
 void main() {
   runApp(MyApp());
@@ -47,8 +46,6 @@ class _MyViewState extends State<MyView> {
 
   @override
   Widget build(BuildContext context) {
-    final appcastURL = 'https://filippov-hko4rv9s2jb-apigcp.nimbella.io/api/covidStats/getVersion';
-    final cfg = AppcastConfiguration(url: appcastURL, supportedOS: ['android']);
     
     return Scaffold(
       appBar: AppBar(
@@ -56,11 +53,7 @@ class _MyViewState extends State<MyView> {
         // the App.build method, and use it to set our appbar title.
         title: Text("COVID-19 stats"),
       ),
-      body: UpgradeAlert(
-          appcastConfig: cfg,
-          debugLogging: true,
-          child: _pagesOptions.elementAt(_selectedIndex),
-        ),
+      body: _pagesOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

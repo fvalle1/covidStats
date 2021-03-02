@@ -27,7 +27,6 @@ dependencies:
   url_launcher:
   intl:
   charts_flutter:
-  upgrader:
   integration_test:
 
   # The following adds the Cupertino Icons font to your application.
