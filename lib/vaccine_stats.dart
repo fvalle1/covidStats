@@ -26,6 +26,9 @@ class VaccineStats {
         case "Moderna":
           personeVaccinate += secondaDose;
           break;
+        case "AstraZeneca":
+          personeVaccinate += secondaDose;
+          break;
         default:
           personeVaccinate += primaDose;
       }

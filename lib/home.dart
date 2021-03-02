@@ -202,14 +202,14 @@ class MyHomePage extends StatelessWidget {
               GestureDetector(
                   onTap: _launchURLCommisssarioApp,
                   child: Text(
-                      "2021 (c) Commissario straordinario per l'emergenza Covid-19 \n Presidenza del Consiglio dei Ministri.",
+                      "2021 (c) Commissario straordinario \n per l'emergenza Covid-19 \n Presidenza del Consiglio dei Ministri.",
                       maxLines: 3,
                       softWrap: true,
                       overflow: TextOverflow.clip,
                       style: TextStyle(fontSize: 6),
                       textAlign: TextAlign.left))
             ]),
-            Spacer(flex: 1),
+            Spacer(flex: 2),
           ],
         ),
       ),
