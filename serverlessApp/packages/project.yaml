@@ -1,0 +1,11 @@
+bucket:
+  strip: 1
+packages:
+  - name: covidStats
+    web: false
+    actions:
+      - name: getVersion
+        runtime: python:3
+        limits:
+          timeout: 60000
+
