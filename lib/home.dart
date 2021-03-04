@@ -6,10 +6,10 @@ import 'stats.dart';
 import 'vaccine_stats.dart';
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key key, this.title = ""}) : super(key: key);
-  final String title;
-  Future<Stats> _futureStatistics;
-  Future<VaccineStats> _futureVaccineStatistics;
+  MyHomePage({Key? key, this.title = "Home"}) : super(key: key);
+  String title;
+  Future<Stats>? _futureStatistics;
+  Future<VaccineStats>? _futureVaccineStatistics;
 
   _launchURLApp() async {
     const url = 'https://github.com/pcm-dpc/COVID-19';
@@ -56,8 +56,8 @@ class MyHomePage extends StatelessWidget {
                                 TextSpan(
                                     text: NumberFormat.compact(locale: "it_IT")
                                             .format(snapshot
-                                                .data.personeVaccinate) +
-                                        ' (${snapshot.data.fracPopolazione.toStringAsFixed(2)}% della popolazione)',
+                                                .data?.personeVaccinate) +
+                                        ' (${snapshot.data?.fracPopolazione.toStringAsFixed(2)}% della popolazione)',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.deepPurple,
@@ -69,7 +69,7 @@ class MyHomePage extends StatelessWidget {
                                 TextSpan(
                                     text: NumberFormat.compact(locale: "it_IT")
                                             .format(snapshot
-                                                .data.dosiSomministrate),
+                                                .data?.dosiSomministrate),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.deepPurple,
@@ -91,7 +91,7 @@ class MyHomePage extends StatelessWidget {
                             text: 'Nuovi positivi: ',
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '${snapshot.data.nuoviPositivi}',
+                                  text: '${snapshot.data?.nuoviPositivi}',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.red,
@@ -102,7 +102,7 @@ class MyHomePage extends StatelessWidget {
                             children: <TextSpan>[
                               TextSpan(
                                   text:
-                                      '${snapshot.data.terapiaIntensiva} (${snapshot.data.deltaTerapiaIntensiva})',
+                                      '${snapshot.data?.terapiaIntensiva} (${snapshot.data?.deltaTerapiaIntensiva})',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.blue,
@@ -112,7 +112,7 @@ class MyHomePage extends StatelessWidget {
                             TextSpan(text: 'Ricoverati: ', children: <TextSpan>[
                           TextSpan(
                               text:
-                                  '${snapshot.data.ricoverati} (${snapshot.data.deltaRicoverati})',
+                                  '${snapshot.data?.ricoverati} (${snapshot.data?.deltaRicoverati})',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.red,
@@ -123,7 +123,7 @@ class MyHomePage extends StatelessWidget {
                             children: <TextSpan>[
                               TextSpan(
                                   text:
-                                      '${snapshot.data.totalePositivi} (${snapshot.data.totalePositivi - snapshot.data.previousTotalePositivi})',
+                                      '${snapshot.data?.totalePositivi} (${snapshot.data!.totalePositivi! - snapshot.data!.previousTotalePositivi!})',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.red,
@@ -133,7 +133,7 @@ class MyHomePage extends StatelessWidget {
                             TextSpan(text: 'Deceduti: ', children: <TextSpan>[
                           TextSpan(
                               text:
-                                  '${snapshot.data.deceduti} (${snapshot.data.deltaDeceduti})',
+                                  '${snapshot.data?.deceduti} (${snapshot.data?.deltaDeceduti})',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
@@ -142,7 +142,7 @@ class MyHomePage extends StatelessWidget {
                         Text.rich(
                             TextSpan(text: 'Tamponi: ', children: <TextSpan>[
                           TextSpan(
-                              text: '${snapshot.data.tamponi}',
+                              text: '${snapshot.data?.tamponi}',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.green,
@@ -155,7 +155,7 @@ class MyHomePage extends StatelessWidget {
                                 TextSpan(text: 'Frazione tamponi positivi: ')),
                             Text.rich(TextSpan(
                                 text:
-                                    '${snapshot.data.frazioneTamponi.toStringAsFixed(1)} % (${snapshot.data.deltaFrazioneTamponi.toStringAsFixed(1)} %)',
+                                    '${snapshot.data?.frazioneTamponi?.toStringAsFixed(1)} % (${snapshot.data?.deltaFrazioneTamponi?.toStringAsFixed(1)} %)',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.red,
@@ -166,7 +166,7 @@ class MyHomePage extends StatelessWidget {
                             text: 'Ultimo aggiornamento: ',
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '${snapshot.data.data}',
+                                  text: '${snapshot.data?.data}',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.green,

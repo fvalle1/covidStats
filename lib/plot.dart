@@ -1,4 +1,4 @@
-import 'package:charts_flutter/flutter.dart' as charts;
+import "package:charts_flutter/flutter.dart" as charts;
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -6,8 +6,8 @@ import 'dart:convert';
 import 'dart:core';
 
 class MeasureData {
-  int day;
-  double value;
+  int? day;
+  double? value;
   charts.Color color = charts.ColorUtil.fromDartColor(Colors.grey);
   MeasureData({@required this.day, @required this.value});
 }
@@ -15,7 +15,7 @@ class MeasureData {
 class PlotSeries {
   static List<MeasureData> _data = [];
 
-  List<charts.Series<MeasureData, int>> series;
+  List<charts.Series<MeasureData, int>>? series;
 
   factory PlotSeries.makeSeries(
       List<dynamic> json, String label, bool delta, bool deltaDenominator) {
@@ -91,7 +91,9 @@ class PlotSeries {
 Future<PlotSeries> fetchPlotSeries(String label,
     {bool delta = false, bool deltaDenominator = false}) async {
   final response = await http.get(
-      'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json');
+      Uri.parse(
+      'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json')
+      );
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,

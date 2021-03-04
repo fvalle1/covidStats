@@ -9,14 +9,14 @@ class VaccineStats {
   static final int popolazione = 60756087;
 
   VaccineStats(
-      {this.dosiSomministrate, this.personeVaccinate, this.fracPopolazione});
+      {this.dosiSomministrate = -1, this.personeVaccinate = -1, this.fracPopolazione = -1});
 
   factory VaccineStats.fromFetchedJson(List<dynamic> json) {
     var personeVaccinate = 0;
     var dosiSomministrate = 0;
     for (var item in json) {
-      var primaDose = item["prima_dose"];
-      var secondaDose = item["seconda_dose"];
+      int primaDose = item["prima_dose"];
+      int secondaDose = item["seconda_dose"];
       var fornitore = item["fornitore"];
       //some vaccines requires two doses
       switch (fornitore) {
@@ -44,7 +44,9 @@ class VaccineStats {
 
 Future<VaccineStats> fetchVaccineData() async {
   final response = await http.get(
-      'https://raw.githubusercontent.com/italia/covid19-opendata-vaccini/master/dati/somministrazioni-vaccini-latest.json');
+      Uri.parse(
+      'https://raw.githubusercontent.com/italia/covid19-opendata-vaccini/master/dati/somministrazioni-vaccini-latest.json')
+      );
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,

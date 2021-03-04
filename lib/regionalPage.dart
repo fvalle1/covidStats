@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'regionPage.dart';
 
 class MyRegionalPage extends StatelessWidget {
-  MyRegionalPage({Key key, this.title}) : super(key: key);
+  MyRegionalPage({Key? key, this.title = ""}) : super(key: key);
 
   final String title;
   final int _itemCount = 21;

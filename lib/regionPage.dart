@@ -8,7 +8,7 @@ import 'stats.dart';
 import 'regional.dart';
 
 class MyRegionPage extends StatefulWidget {
-  MyRegionPage({Key key, this.title}) : super(key: key);
+  MyRegionPage({Key? key, this.title=""}) : super(key: key);
 
   final String title;
 
@@ -17,11 +17,11 @@ class MyRegionPage extends StatefulWidget {
 }
 
 class _MyRegionPageState extends State<MyRegionPage> {
-  Future<Stats> _futureStatistics;
-  Future<PlotSeries> _futurePlotData;
-  bool _showPlots;
-  bool _showStats;
-  String _currentTrend;
+  Future<Stats>? _futureStatistics;
+  Future<PlotSeries>? _futurePlotData;
+  bool _showPlots = false;
+  bool _showStats = true;
+  String? _currentTrend;
 
   @override
   void initState() {
@@ -54,7 +54,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                   text: 'Nuovi positivi: ',
                                   children: <TextSpan>[
                                     TextSpan(
-                                        text: '${snapshot.data.nuoviPositivi}',
+                                        text: '${snapshot.data?.nuoviPositivi}',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.red,
@@ -65,7 +65,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                   children: <TextSpan>[
                                     TextSpan(
                                         text:
-                                            '${snapshot.data.terapiaIntensiva} (${snapshot.data.deltaTerapiaIntensiva})',
+                                            '${snapshot.data?.terapiaIntensiva} (${snapshot.data?.deltaTerapiaIntensiva})',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.blue,
@@ -76,7 +76,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                   children: <TextSpan>[
                                     TextSpan(
                                         text:
-                                            '${snapshot.data.ricoverati} (${snapshot.data.deltaRicoverati})',
+                                            '${snapshot.data?.ricoverati} (${snapshot.data?.deltaRicoverati})',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.red,
@@ -87,7 +87,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                   children: <TextSpan>[
                                     TextSpan(
                                         text:
-                                            '${snapshot.data.totalePositivi} (${snapshot.data.totalePositivi - snapshot.data.previousTotalePositivi})',
+                                            '${snapshot.data?.totalePositivi} (${snapshot.data!.totalePositivi! - snapshot.data!.previousTotalePositivi!})',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.red,
@@ -98,7 +98,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                   children: <TextSpan>[
                                     TextSpan(
                                         text:
-                                            '${snapshot.data.deceduti} (${snapshot.data.deltaDeceduti})',
+                                            '${snapshot.data?.deceduti} (${snapshot.data?.deltaDeceduti})',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
@@ -108,7 +108,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                   text: 'Tamponi: ',
                                   children: <TextSpan>[
                                     TextSpan(
-                                        text: '${snapshot.data.tamponi}',
+                                        text: '${snapshot.data?.tamponi}',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.green,
@@ -121,7 +121,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                       text: 'Frazione tamponi positivi: ')),
                                   Text.rich(TextSpan(
                                       text:
-                                          '${snapshot.data.frazioneTamponi.toStringAsFixed(1)} % (${snapshot.data.deltaFrazioneTamponi.toStringAsFixed(1)} %)',
+                                          '${snapshot.data?.frazioneTamponi?.toStringAsFixed(1)} % (${snapshot.data?.deltaFrazioneTamponi?.toStringAsFixed(1)} %)',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.red,
@@ -132,7 +132,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                   text: 'Ultimo aggiornamento: ',
                                   children: <TextSpan>[
                                     TextSpan(
-                                        text: '${snapshot.data.data}',
+                                        text: '${snapshot.data?.data}',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.green,
@@ -150,7 +150,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                   )
                 : Container(),
             //Spacer(flex: 1),
-            _showPlots ? Text(_currentTrend) : Container(),
+            _showPlots ? Text(_currentTrend!) : Container(),
             Container(
                 child: _showPlots
                     ? FutureBuilder<PlotSeries>(
@@ -158,7 +158,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             return Expanded(
-                                child: charts.LineChart(snapshot.data.series,
+                                child: charts.LineChart(snapshot.data?.series,
                                     animate: true));
                           } else if (snapshot.hasError) {
                             return Text("${snapshot.error}");

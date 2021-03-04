@@ -23,7 +23,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyView extends StatefulWidget {
-  MyView({Key key}) : super(key: key);
+  MyView({Key? key, this.title}) : super(key: key);
+
+  String? title;
 
   @override
   _MyViewState createState() => _MyViewState();
@@ -46,7 +48,6 @@ class _MyViewState extends State<MyView> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by

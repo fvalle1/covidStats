@@ -4,22 +4,22 @@ import 'package:intl/intl.dart' show DateFormat;
 import 'package:http/http.dart' as http;
 
 class Stats {
-  int totalePositivi;
-  int previousTotalePositivi;
-  int nuoviPositivi;
-  int previousPositivi;
-  int terapiaIntensiva;
-  int deltaTerapiaIntensiva;
-  int ricoverati;
-  int deltaRicoverati;
-  int deceduti;
-  int deltaDeceduti;
-  int tamponi;
-  int previousTamponi;
-  int casi;
-  String data;
-  double frazioneTamponi;
-  double deltaFrazioneTamponi;
+  int? totalePositivi;
+  int? previousTotalePositivi;
+  int? nuoviPositivi;
+  int? previousPositivi;
+  int? terapiaIntensiva;
+  int? deltaTerapiaIntensiva;
+  int? ricoverati;
+  int? deltaRicoverati;
+  int? deceduti;
+  int? deltaDeceduti;
+  int? tamponi;
+  int? previousTamponi;
+  int? casi;
+  String? data;
+  double? frazioneTamponi;
+  double? deltaFrazioneTamponi;
 
   Stats(
       {this.totalePositivi,
@@ -36,8 +36,8 @@ class Stats {
       this.previousTamponi,
       this.casi,
       this.data}) {
-    this.frazioneTamponi = this.nuoviPositivi / this.tamponi * 100;
-    this.deltaFrazioneTamponi = (this.previousPositivi).toDouble().abs() / this.previousTamponi * 100;
+    this.frazioneTamponi = this.nuoviPositivi! / this.tamponi! * 100;
+    this.deltaFrazioneTamponi = (this.previousPositivi!.toDouble().abs() / this.previousTamponi!) * 100;
   }
 
   factory Stats.fromFetchedJson(List<dynamic> json) {
@@ -66,7 +66,9 @@ class Stats {
 
 Future<Stats> fetchData() async {
   final response = await http.get(
-      'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json');
+      Uri.parse(
+      'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json')
+      );
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,

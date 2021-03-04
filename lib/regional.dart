@@ -8,7 +8,9 @@ import 'plot.dart';
 
 Future<Stats> fetchRegionalStats(String region) async {
   final response = await http.get(
-      'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json');
+      Uri.parse(
+      'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json')
+      );
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
@@ -30,8 +32,9 @@ Future<Stats> fetchRegionalStats(String region) async {
 Future<PlotSeries> fetchRegionalPlotSeries(String region, String label,
     {bool delta = false, bool deltaDenominator = false}) async {
   final response = await http.get(
-      'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json');
-
+      Uri.parse(
+      'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-regioni.json')
+  );
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.

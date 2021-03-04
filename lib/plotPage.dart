@@ -4,18 +4,18 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'plot.dart';
 
 class MyPlotPage extends StatefulWidget {
-  MyPlotPage({Key key, this.title, this.label}) : super(key: key);
+  MyPlotPage({Key? key, this.title = "", this.label}) : super(key: key);
 
   final String title;
-  final String label;
+  final String? label;
 
   @override
   _MyPlotPageState createState() => _MyPlotPageState();
 }
 
 class _MyPlotPageState extends State<MyPlotPage> {
-  Future<PlotSeries> _futurePlotData;
-  String _currentTrend;
+  Future<PlotSeries>? _futurePlotData;
+  String? _currentTrend;
 
   @override
   void initState() {
@@ -34,13 +34,13 @@ class _MyPlotPageState extends State<MyPlotPage> {
         child: Column(
           children: <Widget>[
             Container(
-                child: Text(_currentTrend, style: TextStyle(fontSize: 24))),
+                child: Text(_currentTrend!, style: TextStyle(fontSize: 24))),
             FutureBuilder<PlotSeries>(
                 future: _futurePlotData,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return Expanded(
-                        child: charts.LineChart(snapshot.data.series,
+                        child: charts.LineChart(snapshot.data?.series,
                             animate: true));
                   } else if (snapshot.hasError) {
                     return Text("${snapshot.error}");
