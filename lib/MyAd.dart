@@ -1,9 +1,20 @@
+import 'dart:io';
+
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class MyAdBanner extends BannerAd {
+  static String? _getID() {
+    if (Platform.isAndroid) {
+      return "ca-app-pub-5634083263382878/1543430580";
+    }
+    if (Platform.isIOS) {
+      return "ca-app-pub-5634083263382878~5098983473";
+    }
+  }
+
   MyAdBanner()
       : super(
-          adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+          adUnitId: _getID(),
           size: AdSize.banner,
           request: AdRequest(),
           listener: AdListener(),
@@ -13,7 +24,6 @@ class MyAdBanner extends BannerAd {
 class MyAdWidget extends AdWidget {
   MyAdWidget({BannerAd? ad}) : super(ad: ad!);
 }
-
 
 final AdListener listener = AdListener(
   // Called when an ad is successfully received.
