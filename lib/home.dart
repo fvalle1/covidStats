@@ -183,7 +183,7 @@ class MyHomePage extends StatelessWidget {
               },
             ),
             Spacer(flex: 1),
-            Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
               Text("Sources: ",
                   maxLines: 1,
                   softWrap: true,
