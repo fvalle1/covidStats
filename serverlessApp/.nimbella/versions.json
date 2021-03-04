@@ -1,0 +1,19 @@
+[
+  {
+    "apihost": "https://apigcp.nimbella.io",
+    "namespace": "filippov-hko4rv9s2jb",
+    "packageVersions": {
+      "covidStats": {
+        "version": "0.0.11",
+        "digest": "0ba649ac589445cc4b083bcf230f8e8effbc77f54ef6c9f5440099a5ff2ed856"
+      }
+    },
+    "actionVersions": {
+      "covidStats/getVersion": {
+        "version": "0.0.11",
+        "digest": "4dc17ee293488321a00f2928bf7c220c5224a94e3b5bc59f124ba134a5b43034"
+      }
+    },
+    "webHashes": {}
+  }
+]
