@@ -7,8 +7,11 @@ import 'package:upgrader/upgrader.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() {
-  MobileAds.instance.initialize();
-  runApp(MyApp());
+  try{
+    MobileAds.instance.initialize();
+  }finally{
+    runApp(MyApp());
+  }
 }
 
 class MyApp extends StatelessWidget {

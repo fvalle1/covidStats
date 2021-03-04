@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
 
+import 'dart:io';
+
 import 'stats.dart';
 import 'vaccine_stats.dart';
 import 'MyAd.dart';
@@ -38,9 +40,14 @@ class MyHomePage extends StatelessWidget {
     _futureStatistics = fetchData();
     _futureVaccineStatistics = fetchVaccineData();
 
-    adBanner = MyAdBanner();
-    adWidget = MyAdWidget(ad: adBanner);
-    adBanner?.load();
+    try {
+      adBanner = MyAdBanner();
+      adWidget = MyAdWidget(ad: adBanner);
+      adBanner?.load();
+    } catch (err) {
+      adBanner = null;
+      adWidget = null;
+    }
 
     return Scaffold(
       body: Center(
@@ -220,7 +227,7 @@ class MyHomePage extends StatelessWidget {
             Spacer(flex: 2),
             Container(
               alignment: Alignment.center,
-              child: adWidget!,
+              child: adWidget,
               width: adBanner?.size.width.toDouble(),
               height: adBanner?.size.height.toDouble(),
             )
