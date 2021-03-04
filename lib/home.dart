@@ -4,12 +4,16 @@ import 'package:intl/intl.dart';
 
 import 'stats.dart';
 import 'vaccine_stats.dart';
+import 'MyAd.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key, this.title = "Home"}) : super(key: key);
   String title;
   Future<Stats>? _futureStatistics;
   Future<VaccineStats>? _futureVaccineStatistics;
+
+  MyAdWidget? adWidget;
+  MyAdBanner? adBanner;
 
   _launchURLApp() async {
     const url = 'https://github.com/pcm-dpc/COVID-19';
@@ -33,6 +37,10 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     _futureStatistics = fetchData();
     _futureVaccineStatistics = fetchVaccineData();
+
+    adBanner = MyAdBanner();
+    adWidget = MyAdWidget(ad: adBanner);
+    adBanner?.load();
 
     return Scaffold(
       body: Center(
@@ -63,13 +71,13 @@ class MyHomePage extends StatelessWidget {
                                         color: Colors.deepPurple,
                                         fontSize: 20))
                               ])),
-                              Text.rich(TextSpan(
+                          Text.rich(TextSpan(
                               text: 'Dosi somministrate: ',
                               children: <TextSpan>[
                                 TextSpan(
                                     text: NumberFormat.compact(locale: "it_IT")
-                                            .format(snapshot
-                                                .data?.dosiSomministrate),
+                                        .format(
+                                            snapshot.data?.dosiSomministrate),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.deepPurple,
@@ -210,6 +218,12 @@ class MyHomePage extends StatelessWidget {
                       textAlign: TextAlign.left))
             ]),
             Spacer(flex: 2),
+            Container(
+              alignment: Alignment.center,
+              child: adWidget!,
+              width: adBanner?.size.width.toDouble(),
+              height: adBanner?.size.height.toDouble(),
+            )
           ],
         ),
       ),
