@@ -115,7 +115,7 @@ class MyHomePage extends StatelessWidget {
                             children: <TextSpan>[
                               TextSpan(
                                   text:
-                                      '${snapshot.data?.terapiaIntensiva} (${snapshot.data?.deltaTerapiaIntensiva})',
+                                      '${snapshot.data?.terapiaIntensiva} (${(snapshot.data!.deltaRicoverati! > 0) ? "+" : ""}${snapshot.data?.deltaTerapiaIntensiva} da ieri)',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.blue,
@@ -125,7 +125,7 @@ class MyHomePage extends StatelessWidget {
                             TextSpan(text: 'Ricoverati: ', children: <TextSpan>[
                           TextSpan(
                               text:
-                                  '${snapshot.data?.ricoverati} (${snapshot.data?.deltaRicoverati})',
+                                  '${snapshot.data?.ricoverati} (${(snapshot.data!.deltaRicoverati!>0)?"+":""}${snapshot.data?.deltaRicoverati} da ieri)',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.red,
@@ -136,7 +136,7 @@ class MyHomePage extends StatelessWidget {
                             children: <TextSpan>[
                               TextSpan(
                                   text:
-                                      '${snapshot.data?.totalePositivi} (${snapshot.data!.totalePositivi! - snapshot.data!.previousTotalePositivi!})',
+                                      '${snapshot.data?.totalePositivi} (${(snapshot.data!.totalePositivi! > snapshot.data!.previousTotalePositivi!) ? "+" : ""}${snapshot.data!.totalePositivi! - snapshot.data!.previousTotalePositivi!} da ieri)',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.red,
@@ -146,7 +146,7 @@ class MyHomePage extends StatelessWidget {
                             TextSpan(text: 'Deceduti: ', children: <TextSpan>[
                           TextSpan(
                               text:
-                                  '${snapshot.data?.deceduti} (${snapshot.data?.deltaDeceduti})',
+                                  '${snapshot.data?.deceduti} (ieri ${snapshot.data?.deltaDeceduti})',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
@@ -168,7 +168,7 @@ class MyHomePage extends StatelessWidget {
                                 TextSpan(text: 'Frazione tamponi positivi: ')),
                             Text.rich(TextSpan(
                                 text:
-                                    '${snapshot.data?.frazioneTamponi?.toStringAsFixed(1)} % (${snapshot.data?.deltaFrazioneTamponi?.toStringAsFixed(1)} %)',
+                                    '${snapshot.data?.frazioneTamponi?.toStringAsFixed(1)} % (ieri ${snapshot.data?.deltaFrazioneTamponi?.toStringAsFixed(1)} %)',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.red,
@@ -176,7 +176,7 @@ class MyHomePage extends StatelessWidget {
                           ],
                         ),
                         Text.rich(TextSpan(
-                            text: 'Ultimo aggiornamento: ',
+                            text: 'Ultimo aggiornamento dalla Protezione Civile:',
                             children: <TextSpan>[
                               TextSpan(
                                   text: '${snapshot.data?.data}',
