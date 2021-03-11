@@ -8,7 +8,7 @@ import 'stats.dart';
 import 'regional.dart';
 
 class MyRegionPage extends StatefulWidget {
-  MyRegionPage({Key? key, this.title=""}) : super(key: key);
+  MyRegionPage({Key? key, this.title = ""}) : super(key: key);
 
   final String title;
 
@@ -158,8 +158,12 @@ class _MyRegionPageState extends State<MyRegionPage> {
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             return Expanded(
-                                child: charts.LineChart(snapshot.data?.series,
-                                    animate: true));
+                                child: charts.TimeSeriesChart(
+                                    snapshot.data?.series,
+                                    dateTimeFactory:
+                                        const charts.LocalDateTimeFactory(),
+                                    animate: true)
+                                    );
                           } else if (snapshot.hasError) {
                             return Text("${snapshot.error}");
                           }

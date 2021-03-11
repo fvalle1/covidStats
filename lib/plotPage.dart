@@ -40,8 +40,10 @@ class _MyPlotPageState extends State<MyPlotPage> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return Expanded(
-                        child: charts.LineChart(snapshot.data?.series,
-                            animate: true));
+                        child: charts.TimeSeriesChart(snapshot.data?.series,
+                            dateTimeFactory: const charts.LocalDateTimeFactory(),
+                            animate: true)
+                            );
                   } else if (snapshot.hasError) {
                     return Text("${snapshot.error}");
                   }

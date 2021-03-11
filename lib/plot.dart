@@ -6,7 +6,7 @@ import 'dart:convert';
 import 'dart:core';
 
 class MeasureData {
-  int? day;
+  DateTime? day;
   double? value;
   charts.Color color = charts.ColorUtil.fromDartColor(Colors.grey);
   MeasureData({@required this.day, @required this.value});
@@ -15,7 +15,7 @@ class MeasureData {
 class PlotSeries {
   static List<MeasureData> _data = [];
 
-  List<charts.Series<MeasureData, int>>? series;
+  List<charts.Series<MeasureData, DateTime>>? series;
 
   factory PlotSeries.makeSeries(
       List<dynamic> json, String label, bool delta, bool deltaDenominator) {
@@ -51,7 +51,7 @@ class PlotSeries {
           denominator = 1.0;
         }
         _data.add(MeasureData(
-            day: i, value: double.parse('${numerator / denominator * 100}')));
+            day: DateTime.parse(json[i]["data"]), value: double.parse('${numerator / denominator * 100}')));
       }
     } else {
       if (delta) {
@@ -61,7 +61,7 @@ class PlotSeries {
             val += double.parse('${json[j][label] - json[j - 1][label]}');
           } 
           _data.add(MeasureData(
-              day: i,
+              day: DateTime.parse(json[i]["data"]),
               value: double.parse('${val/7.0}')));
         }
       } else {
@@ -71,12 +71,12 @@ class PlotSeries {
             val += double.parse('${json[j][label]}');
           } 
           _data.add(
-              MeasureData(day: i, value: double.parse('${val/7.0}')));
+              MeasureData(day: DateTime.parse(json[i]["data"]), value: double.parse('${val/7.0}')));
         }
       }
     }
     return PlotSeries(series: [
-      charts.Series<MeasureData, int>(
+      charts.Series<MeasureData, DateTime>(
           id: "serie1",
           data: _data,
           domainFn: (MeasureData series, _) => series.day,
