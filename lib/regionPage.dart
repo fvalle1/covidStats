@@ -8,7 +8,7 @@ import 'stats.dart';
 import 'regional.dart';
 
 class MyRegionPage extends StatefulWidget {
-  MyRegionPage({Key? key, this.title=""}) : super(key: key);
+  MyRegionPage({Key? key, this.title = ""}) : super(key: key);
 
   final String title;
 
@@ -65,7 +65,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                   children: <TextSpan>[
                                     TextSpan(
                                         text:
-                                            '${snapshot.data?.terapiaIntensiva} (${snapshot.data?.deltaTerapiaIntensiva})',
+                                            '${snapshot.data?.terapiaIntensiva} (${(snapshot.data!.deltaTerapiaIntensiva! > 0) ? "+" : ""}${snapshot.data?.deltaTerapiaIntensiva} da ieri)',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.blue,
@@ -76,7 +76,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                   children: <TextSpan>[
                                     TextSpan(
                                         text:
-                                            '${snapshot.data?.ricoverati} (${snapshot.data?.deltaRicoverati})',
+                                            '${snapshot.data?.ricoverati} (${(snapshot.data!.deltaRicoverati! > 0) ? "+" : ""}${snapshot.data?.deltaRicoverati} da ieri)',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.red,
@@ -87,7 +87,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                   children: <TextSpan>[
                                     TextSpan(
                                         text:
-                                            '${snapshot.data?.totalePositivi} (${snapshot.data!.totalePositivi! - snapshot.data!.previousTotalePositivi!})',
+                                            '${snapshot.data?.totalePositivi} (${(snapshot.data!.totalePositivi! > snapshot.data!.previousTotalePositivi!) ? "+" : ""}${snapshot.data!.totalePositivi! - snapshot.data!.previousTotalePositivi!} da ieri)',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.red,
@@ -98,7 +98,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                   children: <TextSpan>[
                                     TextSpan(
                                         text:
-                                            '${snapshot.data?.deceduti} (${snapshot.data?.deltaDeceduti})',
+                                            '${snapshot.data?.deceduti} (ieri ${snapshot.data?.deltaDeceduti})',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.black,
@@ -121,7 +121,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                       text: 'Frazione tamponi positivi: ')),
                                   Text.rich(TextSpan(
                                       text:
-                                          '${snapshot.data?.frazioneTamponi?.toStringAsFixed(1)} % (${snapshot.data?.deltaFrazioneTamponi?.toStringAsFixed(1)} %)',
+                                          '${snapshot.data?.frazioneTamponi?.toStringAsFixed(1)}% (ieri ${snapshot.data?.deltaFrazioneTamponi?.toStringAsFixed(1)}%)',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           color: Colors.red,
@@ -158,8 +158,12 @@ class _MyRegionPageState extends State<MyRegionPage> {
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             return Expanded(
-                                child: charts.LineChart(snapshot.data?.series,
-                                    animate: true));
+                                child: charts.TimeSeriesChart(
+                                    snapshot.data?.series,
+                                    dateTimeFactory:
+                                        const charts.LocalDateTimeFactory(),
+                                    animate: true)
+                                    );
                           } else if (snapshot.hasError) {
                             return Text("${snapshot.error}");
                           }

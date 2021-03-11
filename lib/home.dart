@@ -4,12 +4,16 @@ import 'package:intl/intl.dart';
 
 import 'stats.dart';
 import 'vaccine_stats.dart';
+import 'MyAd.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key, this.title = "Home"}) : super(key: key);
   String title;
   Future<Stats>? _futureStatistics;
   Future<VaccineStats>? _futureVaccineStatistics;
+
+  MyAdWidget? adWidget;
+  MyAdBanner? adBanner;
 
   _launchURLApp() async {
     const url = 'https://github.com/pcm-dpc/COVID-19';
@@ -33,6 +37,15 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     _futureStatistics = fetchData();
     _futureVaccineStatistics = fetchVaccineData();
+
+    try {
+      adBanner = MyAdBanner();
+      adWidget = MyAdWidget(ad: adBanner);
+      adBanner?.load();
+    } catch (err) {
+      adBanner = null;
+      adWidget = null;
+    }
 
     return Scaffold(
       body: Center(
@@ -63,13 +76,13 @@ class MyHomePage extends StatelessWidget {
                                         color: Colors.deepPurple,
                                         fontSize: 20))
                               ])),
-                              Text.rich(TextSpan(
+                          Text.rich(TextSpan(
                               text: 'Dosi somministrate: ',
                               children: <TextSpan>[
                                 TextSpan(
                                     text: NumberFormat.compact(locale: "it_IT")
-                                            .format(snapshot
-                                                .data?.dosiSomministrate),
+                                        .format(
+                                            snapshot.data?.dosiSomministrate),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.deepPurple,
@@ -102,7 +115,7 @@ class MyHomePage extends StatelessWidget {
                             children: <TextSpan>[
                               TextSpan(
                                   text:
-                                      '${snapshot.data?.terapiaIntensiva} (${snapshot.data?.deltaTerapiaIntensiva})',
+                                      '${snapshot.data?.terapiaIntensiva} (${(snapshot.data!.deltaRicoverati! > 0) ? "+" : ""}${snapshot.data?.deltaTerapiaIntensiva} da ieri)',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.blue,
@@ -112,7 +125,7 @@ class MyHomePage extends StatelessWidget {
                             TextSpan(text: 'Ricoverati: ', children: <TextSpan>[
                           TextSpan(
                               text:
-                                  '${snapshot.data?.ricoverati} (${snapshot.data?.deltaRicoverati})',
+                                  '${snapshot.data?.ricoverati} (${(snapshot.data!.deltaRicoverati!>0)?"+":""}${snapshot.data?.deltaRicoverati} da ieri)',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.red,
@@ -123,7 +136,7 @@ class MyHomePage extends StatelessWidget {
                             children: <TextSpan>[
                               TextSpan(
                                   text:
-                                      '${snapshot.data?.totalePositivi} (${snapshot.data!.totalePositivi! - snapshot.data!.previousTotalePositivi!})',
+                                      '${snapshot.data?.totalePositivi} (${(snapshot.data!.totalePositivi! > snapshot.data!.previousTotalePositivi!) ? "+" : ""}${snapshot.data!.totalePositivi! - snapshot.data!.previousTotalePositivi!} da ieri)',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.red,
@@ -133,7 +146,7 @@ class MyHomePage extends StatelessWidget {
                             TextSpan(text: 'Deceduti: ', children: <TextSpan>[
                           TextSpan(
                               text:
-                                  '${snapshot.data?.deceduti} (${snapshot.data?.deltaDeceduti})',
+                                  '${snapshot.data?.deceduti} (ieri ${snapshot.data?.deltaDeceduti})',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
@@ -155,7 +168,7 @@ class MyHomePage extends StatelessWidget {
                                 TextSpan(text: 'Frazione tamponi positivi: ')),
                             Text.rich(TextSpan(
                                 text:
-                                    '${snapshot.data?.frazioneTamponi?.toStringAsFixed(1)} % (${snapshot.data?.deltaFrazioneTamponi?.toStringAsFixed(1)} %)',
+                                    '${snapshot.data?.frazioneTamponi?.toStringAsFixed(1)} % (ieri ${snapshot.data?.deltaFrazioneTamponi?.toStringAsFixed(1)} %)',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.red,
@@ -163,7 +176,7 @@ class MyHomePage extends StatelessWidget {
                           ],
                         ),
                         Text.rich(TextSpan(
-                            text: 'Ultimo aggiornamento: ',
+                            text: 'Ultimo aggiornamento dalla Protezione Civile:',
                             children: <TextSpan>[
                               TextSpan(
                                   text: '${snapshot.data?.data}',
@@ -210,6 +223,12 @@ class MyHomePage extends StatelessWidget {
                       textAlign: TextAlign.left))
             ]),
             Spacer(flex: 2),
+            Container(
+              alignment: Alignment.center,
+              child: adWidget,
+              width: adBanner?.size.width.toDouble(),
+              height: adBanner?.size.height.toDouble(),
+            )
           ],
         ),
       ),

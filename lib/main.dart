@@ -4,9 +4,14 @@ import 'home.dart';
 import 'plotPage.dart';
 import 'regionalPage.dart';
 import 'package:upgrader/upgrader.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() {
-  runApp(MyApp());
+  try{
+    MobileAds.instance.initialize();
+  }finally{
+    runApp(MyApp());
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -42,9 +47,9 @@ class _MyViewState extends State<MyView> {
   }
 
   static List<Widget> _pagesOptions = [
-    MyHomePage(title: 'Main Statistics'),
+    MyHomePage(title: "Home"),
     MyPlotPage(title: "Trends"),
-    MyRegionalPage(title: "Regional")
+    MyRegionalPage(title: "Regioni")
   ];
 
   @override
@@ -57,7 +62,7 @@ class _MyViewState extends State<MyView> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text("COVID-19 stats"),
+        title: Text("COVID-19 dati"),
       ),
       body: UpgradeAlert(
         appcastConfig: cfg,
@@ -72,11 +77,11 @@ class _MyViewState extends State<MyView> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bar_chart),
-            label: 'Plots',
+            label: 'Grafici',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.map),
-            label: 'Regional',
+            label: 'Regioni',
           )
         ],
         currentIndex: _selectedIndex,
