@@ -35,14 +35,14 @@ packages:
       name: charts_common
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.0"
+    version: "0.10.0"
   charts_flutter:
     dependency: "direct main"
     description:
       name: charts_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.0"
+    version: "0.10.0"
   clock:
     dependency: transitive
     description:
@@ -114,13 +114,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  google_mobile_ads:
-    dependency: "direct main"
-    description:
-      name: google_mobile_ads
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.11.0+1"
   http:
     dependency: "direct main"
     description:
@@ -141,7 +134,7 @@ packages:
       name: intl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.16.1"
+    version: "0.17.0"
   js:
     dependency: transitive
     description:
