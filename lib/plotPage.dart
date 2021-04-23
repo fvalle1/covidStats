@@ -4,23 +4,23 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'plot.dart';
 
 class MyPlotPage extends StatefulWidget {
-  MyPlotPage({Key key, this.title, this.label}) : super(key: key);
+  MyPlotPage({Key? key, this.title = "", this.label}) : super(key: key);
 
   final String title;
-  final String label;
+  final String? label;
 
   @override
   _MyPlotPageState createState() => _MyPlotPageState();
 }
 
 class _MyPlotPageState extends State<MyPlotPage> {
-  Future<PlotSeries> _futurePlotData;
-  String _currentTrend;
+  Future<PlotSeries>? _futurePlotData;
+  String? _currentTrend;
 
   @override
   void initState() {
     super.initState();
-    _currentTrend = "Here some plots";
+    _currentTrend = "Totale positivi";
     _futurePlotData = fetchPlotSeries("totale_positivi");
   }
 
@@ -34,14 +34,16 @@ class _MyPlotPageState extends State<MyPlotPage> {
         child: Column(
           children: <Widget>[
             Container(
-                child: Text(_currentTrend, style: TextStyle(fontSize: 24))),
+                child: Text(_currentTrend!, style: TextStyle(fontSize: 24))),
             FutureBuilder<PlotSeries>(
                 future: _futurePlotData,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return Expanded(
-                        child: charts.LineChart(snapshot.data.series,
-                            animate: true));
+                        child: charts.TimeSeriesChart(snapshot.data?.series,
+                            dateTimeFactory: const charts.LocalDateTimeFactory(),
+                            animate: true)
+                            );
                   } else if (snapshot.hasError) {
                     return Text("${snapshot.error}");
                   }
@@ -54,7 +56,7 @@ class _MyPlotPageState extends State<MyPlotPage> {
               spacing: 1,
               children: [
                 ElevatedButton(
-                    child: Text("totale_positivi"),
+                    child: Text("totale positivi"),
                     onPressed: () {
                       setState(() {
                         _currentTrend = "Totale positivi";
@@ -62,15 +64,15 @@ class _MyPlotPageState extends State<MyPlotPage> {
                       });
                     }),
                 ElevatedButton(
-                    child: Text("frazione_positivi"),
+                    child: Text("percentuale positivi"),
                     onPressed: () {
                       setState(() {
                         _currentTrend = "Percentuale positivi";
-                        _futurePlotData = fetchPlotSeries("totale_positivi/tamponi", delta:true);
+                        _futurePlotData = fetchPlotSeries("nuovi_positivi/tamponi", delta:false, deltaDenominator:true);
                       });
                     }),
                 ElevatedButton(
-                    child: Text("terapie_intensive"),
+                    child: Text("terapie intensive"),
                     onPressed: () {
                       setState(() {
                         _currentTrend = "Terapia intensiva";
@@ -86,7 +88,7 @@ class _MyPlotPageState extends State<MyPlotPage> {
                       });
                     }),
                 ElevatedButton(
-                    child: Text("nuovi_positivi"),
+                    child: Text("nuovi positivi"),
                     onPressed: () {
                       setState(() {
                         _currentTrend = "Nuovi positivi";

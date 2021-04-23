@@ -46,3 +46,10 @@ app.*.map.json
 /android/app/release
 android/key.properties
 debug-info/
+ios/exportOptions.plist
+ios/build/*
+macos/build/*
+android/build/*
+build/*
+*.lock
+serverlessApp/packages/covidStats/getVersion/__deployer__.zip
