@@ -26,14 +26,14 @@ class VaccineStats {
         case "Moderna":
           personeVaccinate += secondaDose;
           break;
-        case "AstraZeneca":
+        case "Vaxzevria (AstraZeneca)":
           personeVaccinate += secondaDose;
           break;
-        case "Jennsen":
+        case "Janssen":
           personeVaccinate += primaDose;
           break;
         default:
-          personeVaccinate += primaDose;
+          personeVaccinate += secondaDose;
       }
       dosiSomministrate += primaDose + secondaDose;
     }
