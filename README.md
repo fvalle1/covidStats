@@ -14,3 +14,5 @@ a web version is deployed at [https://covidstats.codemagic.app/](https://covidst
 ## Getting Started
 
 ![](screen.png)
+
+![](plot.png)
