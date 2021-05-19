@@ -11,18 +11,12 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    container:
-      image:  google/dart:latest
-
     steps:
     - name: Install dependencies
       uses: actions/checkout@v2
-    - uses: steebchen/flutter@v1.1.0
+    - uses: subosito/flutter-action@v1
       with:
-        args: upgrade
-    - uses: steebchen/flutter@v1.1.0
-      with:
-        args: pub get
-    - uses: steebchen/flutter@v1.1.0
-      with:
-        args: build web --no-sound-null-safety
+        flutter-version: '2.x'
+    - run: flutter upgrade
+    - run: flutter pub get
+    - run: flutter build web --no-sound-null-safety
