@@ -79,8 +79,8 @@ class PlotSeries {
       charts.Series<MeasureData, DateTime>(
           id: "serie1",
           data: _data,
-          domainFn: (MeasureData series, _) => series.day,
-          measureFn: (MeasureData series, _) => series.value,
+          domainFn: (MeasureData series, _) => series.day!,
+          measureFn: (MeasureData series, _) => series.value!,
           colorFn: (MeasureData series, _) => series.color)
     ]);
   }

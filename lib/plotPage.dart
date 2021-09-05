@@ -40,7 +40,7 @@ class _MyPlotPageState extends State<MyPlotPage> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return Expanded(
-                        child: charts.TimeSeriesChart(snapshot.data?.series,
+                        child: charts.TimeSeriesChart(snapshot.data!.series!,
                             dateTimeFactory: const charts.LocalDateTimeFactory(),
                             animate: true)
                             );

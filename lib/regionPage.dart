@@ -159,7 +159,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                           if (snapshot.hasData) {
                             return Expanded(
                                 child: charts.TimeSeriesChart(
-                                    snapshot.data?.series,
+                                    snapshot.data!.series!,
                                     dateTimeFactory:
                                         const charts.LocalDateTimeFactory(),
                                     animate: true)
