@@ -3,10 +3,10 @@
     <channel>
         <title>Covid Stats - Appcast</title>
         <item>
-            <title>Version 2.1.0</title>
-            <description>Introduce Vaxzevria vaccine</description>
-            <pubDate>Thu, 5 May 2021 21:00:00 +0000</pubDate>
-            <enclosure url="https://mandrillapp.com/track/click/31095621/api.codemagic.io?p=eyJzIjoiNnNmV1o1TWxyNzkzZmlhZFVkRUtlRzgxUDZFIiwidiI6MSwicCI6IntcInVcIjozMTA5NTYyMSxcInZcIjoxLFwidXJsXCI6XCJodHRwczpcXFwvXFxcL2FwaS5jb2RlbWFnaWMuaW9cXFwvYXJ0aWZhY3RzXFxcLzgzOWJiZWQ3LTkwZTktNGY0Yy05ZWNhLTU3OWMxMjM4NjAwMVxcXC9hNzc5ZjVkMS1kNmVmLTRhMzAtYjM2Zi03MWRiZGU1M2MyNzBcXFwvYXBwLXJlbGVhc2UtdW5pdmVyc2FsLmFwa1wiLFwiaWRcIjpcImIyY2JlZjMwMzZiMDQ3Mzg4ZDBmNDI5MDdkNTk0MGYzXCIsXCJ1cmxfaWRzXCI6W1wiNDdiZDViYTVjNmNjNWRmNmQ1M2U3ODA2M2M4ODM4NjViYzY2YzE1YVwiXX0ifQ" sparkle:version="2.1.0" sparkle:os="android" />
+            <title>Version 2.2.0</title>
+            <description>Minor fixes</description>
+            <pubDate>Sun, 5 Sep 2021 18:00:00 +0000</pubDate>
+            <enclosure url="https://api.codemagic.io/artifacts/8426f90a-6785-40ee-bb4e-621680d039c5/10b6d7c3-5ac0-4f40-b773-b7c9623f328e/app-release-universal.apk" sparkle:version="2.2.0" sparkle:os="android" />
         </item>
     </channel>
 </rss>
