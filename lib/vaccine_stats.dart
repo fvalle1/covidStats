@@ -5,18 +5,21 @@ import 'package:http/http.dart' as http;
 class VaccineStats {
   int personeVaccinate;
   int dosiSomministrate;
+  int? dosiAggiuntive;
   double fracPopolazione;
   static final int popolazione = 60756087;
 
   VaccineStats(
-      {this.dosiSomministrate = -1, this.personeVaccinate = -1, this.fracPopolazione = -1});
+      {this.dosiSomministrate = -1, this.personeVaccinate = -1, this.fracPopolazione = -1, this.dosiAggiuntive = -1});
 
   factory VaccineStats.fromFetchedJson(List<dynamic> json) {
     var personeVaccinate = 0;
     var dosiSomministrate = 0;
+    int dosiAggiuntive = 0;
     for (var item in json) {
       int primaDose = item["prima_dose"];
       int secondaDose = item["seconda_dose"];
+      dosiAggiuntive += item["dose_aggiuntiva"] as int? ?? 0;
       var fornitore = item["fornitore"];
       //some vaccines requires two doses
       switch (fornitore) {
@@ -37,11 +40,15 @@ class VaccineStats {
       }
       dosiSomministrate += primaDose + secondaDose;
     }
+
+    dosiSomministrate += dosiAggiuntive;
+
     return VaccineStats(
         dosiSomministrate: dosiSomministrate.toInt(),
         personeVaccinate: personeVaccinate.toInt(),
         fracPopolazione:
-            double.parse("${personeVaccinate / popolazione * 100}"));
+            double.parse("${personeVaccinate / popolazione * 100}"),
+        dosiAggiuntive: dosiAggiuntive);
   }
 }
 

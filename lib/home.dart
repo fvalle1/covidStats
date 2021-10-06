@@ -75,6 +75,18 @@ class MyHomePage extends StatelessWidget {
                                         color: Colors.deepPurple,
                                         fontSize: 20))
                               ])),
+                          Text.rich(TextSpan(
+                              text: 'Booster somministrati: ',
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: NumberFormat.compact(locale: "it_IT")
+                                        .format(
+                                            snapshot.data?.dosiAggiuntive),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.deepPurple,
+                                        fontSize: 20))
+                              ])),
                         ]);
                   } else {
                     return CircularProgressIndicator();
