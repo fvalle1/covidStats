@@ -3,10 +3,10 @@
     <channel>
         <title>Covid Stats - Appcast</title>
         <item>
-            <title>Version 2.2.0</title>
-            <description>Minor fixes</description>
-            <pubDate>Sun, 5 Sep 2021 18:00:00 +0000</pubDate>
-            <enclosure url="https://api.codemagic.io/artifacts/8426f90a-6785-40ee-bb4e-621680d039c5/10b6d7c3-5ac0-4f40-b773-b7c9623f328e/app-release-universal.apk" sparkle:version="2.2.0" sparkle:os="android" />
+            <title>Version 2.3.0</title>
+            <description>Introduce Boosters</description>
+            <pubDate>Wed, 6 Oct 2021 08:00:00 +0000</pubDate>
+            <enclosure url="" sparkle:version="2.3.0" sparkle:os="android" />
         </item>
     </channel>
 </rss>
