@@ -6,7 +6,7 @@
             <title>Version 2.3.0</title>
             <description>Introduce Boosters</description>
             <pubDate>Wed, 6 Oct 2021 08:00:00 +0000</pubDate>
-            <enclosure url="" sparkle:version="2.3.0" sparkle:os="android" />
+            <enclosure url="https://api.codemagic.io/artifacts/16eb640d-c1de-46b5-bfc3-3156a2207517/4b032a2e-db0e-44ef-8b4c-bb7366d103fa/app-release-universal.apk" sparkle:version="2.3.0" sparkle:os="android" />
         </item>
     </channel>
 </rss>

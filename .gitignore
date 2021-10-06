@@ -53,3 +53,4 @@ android/build/*
 build/*
 *.lock
 serverlessApp/packages/covidStats/getVersion/__deployer__.zip
+*.zip
