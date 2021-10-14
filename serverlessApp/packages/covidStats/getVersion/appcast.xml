@@ -3,10 +3,10 @@
     <channel>
         <title>Covid Stats - Appcast</title>
         <item>
-            <title>Version 2.3.0</title>
-            <description>Introduce Boosters</description>
-            <pubDate>Wed, 6 Oct 2021 08:02:00 +0000</pubDate>
-            <enclosure url="https://api.codemagic.io/artifacts/5e4a29d8-5d04-4277-b968-a7181d6ec0e8/6df129dc-4687-4cb8-ba78-4f7ac2db44fd/app-release-universal.apk" sparkle:version="2.3.1" sparkle:os="android" />
+            <title>Version 2.4.0</title>
+            <description>Introduce pregressa_infezione</description>
+            <pubDate>Thu, 14 Oct 2021 21:02:00 +0000</pubDate>
+            <enclosure url="https://api.codemagic.io/artifacts/f2b63883-ef1d-4497-9f50-06d1a28e7889/76d4688a-7edb-4812-8351-d33a7f16aec2/app-release-universal.apk" sparkle:version="2.4.0" sparkle:os="android" />
         </item>
     </channel>
 </rss>

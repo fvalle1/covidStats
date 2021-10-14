@@ -10,7 +10,10 @@ class VaccineStats {
   static final int popolazione = 60756087;
 
   VaccineStats(
-      {this.dosiSomministrate = -1, this.personeVaccinate = -1, this.fracPopolazione = -1, this.dosiAggiuntive = -1});
+      {this.dosiSomministrate = -1,
+      this.personeVaccinate = -1,
+      this.fracPopolazione = -1,
+      this.dosiAggiuntive = -1});
 
   factory VaccineStats.fromFetchedJson(List<dynamic> json) {
     var personeVaccinate = 0;
@@ -38,6 +41,7 @@ class VaccineStats {
         default:
           personeVaccinate += secondaDose;
       }
+      personeVaccinate += int.parse("${item["pregressa_infezione"]}");
       dosiSomministrate += primaDose + secondaDose;
     }
 
@@ -53,10 +57,8 @@ class VaccineStats {
 }
 
 Future<VaccineStats> fetchVaccineData() async {
-  final response = await http.get(
-      Uri.parse(
-      'https://raw.githubusercontent.com/italia/covid19-opendata-vaccini/master/dati/somministrazioni-vaccini-latest.json')
-      );
+  final response = await http.get(Uri.parse(
+      'https://raw.githubusercontent.com/italia/covid19-opendata-vaccini/master/dati/somministrazioni-vaccini-latest.json'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
