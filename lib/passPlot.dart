@@ -9,7 +9,8 @@ class PassPlot extends PlotSeries {
     List<MeasureData> _data = [];
 
     //7-days moving average
-    for (var i = 4; i < json.length - 4; i++) {
+    // skip (-7) the first 7 days to remove bias due to initial emission
+    for (var i = json.length - 4 - 7; i >=4; i--) {
       var value = 0.0;
       for (int j = i - 3; j < i + 4; j++) {
         value += json[j]["issued_all"];

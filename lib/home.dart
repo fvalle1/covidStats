@@ -8,10 +8,10 @@ import 'passStat.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key, this.title = "Home"}) : super(key: key);
-  late final String title;
-  late final Future<Stats>? _futureStatistics;
-  late final Future<VaccineStats>? _futureVaccineStatistics;
-  late final Future<PassStats>? _futurePassStatistics;
+  String title;
+  Future<Stats>? _futureStatistics;
+  Future<VaccineStats>? _futureVaccineStatistics;
+  Future<PassStats>? _futurePassStatistics;
 
   _launchURLApp() async {
     const url = 'https://github.com/pcm-dpc/COVID-19';
