@@ -7,7 +7,8 @@ class VaccineStats {
   int dosiSomministrate;
   int? dosiAggiuntive;
   double fracPopolazione;
-  static final int popolazione = 60756087;
+  //http://demo.istat.it/popres/index.php?anno=2021&lingua=ita
+  static final int popolazione = 59257566;
 
   VaccineStats(
       {this.dosiSomministrate = -1,

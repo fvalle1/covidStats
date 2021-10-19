@@ -3,13 +3,13 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
 
 import 'stats.dart';
-import 'vaccine_stats.dart';
+import 'vaccineStats.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key, this.title = "Home"}) : super(key: key);
-  String title;
-  Future<Stats>? _futureStatistics;
-  Future<VaccineStats>? _futureVaccineStatistics;
+  late String title;
+  late Future<Stats>? _futureStatistics;
+  late Future<VaccineStats>? _futureVaccineStatistics;
 
   _launchURLApp() async {
     const url = 'https://github.com/pcm-dpc/COVID-19';
