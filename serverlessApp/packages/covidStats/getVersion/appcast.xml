@@ -6,7 +6,7 @@
             <title>Version 3.0.1</title>
             <description>Introduce green pass</description>
             <pubDate>Tue, 18 Oct 2021 07:24:00 +0000</pubDate>
-            <enclosure url="https://api.codemagic.io/artifacts/6acb8d27-79da-4a58-bf3e-b7b1b0bafc1d/71cc2e63-10ab-4f5b-8b53-5ef20a937b4e/app-release-universal.apk" sparkle:version="3.0.1" sparkle:os="android" />
+            <enclosure url="https://api.codemagic.io/artifacts/db4c89cf-a4fd-470f-b118-876efa6d69fe/cd785e79-3264-4ccf-9afe-7717625c1274/app-release-universal.apk" sparkle:version="3.0.1" sparkle:os="android" />
         </item>
     </channel>
 </rss>
