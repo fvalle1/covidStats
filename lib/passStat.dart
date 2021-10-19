@@ -20,7 +20,7 @@ class PassStats {
 
 getPassData() async {
   final response = await http.get(Uri.parse(
-      'https://github.com/ministero-salute/it-dgc-opendata/raw/master/data/dgc-issued.json'));
+      'https://raw.githubusercontent.com/ministero-salute/it-dgc-opendata/master/data/dgc-issued.json'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,

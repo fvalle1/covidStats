@@ -5,8 +5,8 @@
         <item>
             <title>Version 3.0.0</title>
             <description>Introduce green pass</description>
-            <pubDate>Thu, 14 Oct 2021 21:02:00 +0000</pubDate>
-            <enclosure url="" sparkle:version="3.0.0" sparkle:os="android" />
+            <pubDate>Tue, 18 Oct 2021 07:14:00 +0000</pubDate>
+            <enclosure url="https://api.codemagic.io/artifacts/bc5a662c-e33c-4a3f-92df-6ea9eb46a7b8/b33311cd-cd5e-4649-8f9b-7eb70c1520b8/app-release-universal.apk" sparkle:version="3.0.0" sparkle:os="android" />
         </item>
     </channel>
 </rss>
