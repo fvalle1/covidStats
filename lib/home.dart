@@ -8,10 +8,10 @@ import 'passStat.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key, this.title = "Home"}) : super(key: key);
-  late String title;
-  late Future<Stats>? _futureStatistics;
-  late Future<VaccineStats>? _futureVaccineStatistics;
-  late Future<PassStats>? _futurePassStatistics;
+  late final String title;
+  late final Future<Stats>? _futureStatistics;
+  late final Future<VaccineStats>? _futureVaccineStatistics;
+  late final Future<PassStats>? _futurePassStatistics;
 
   _launchURLApp() async {
     const url = 'https://github.com/pcm-dpc/COVID-19';
@@ -264,7 +264,7 @@ class MyHomePage extends StatelessWidget {
                           style: TextStyle(fontSize: 6),
                           textAlign: TextAlign.left)),
                   GestureDetector(
-                      onTap: _launchURLCommisssarioApp,
+                      onTap: _launchURLMinSaluteApp,
                       child: Text("Copyright 2021 (c) Ministero della Salute.",
                           maxLines: 3,
                           softWrap: true,

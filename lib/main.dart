@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
 class MyView extends StatefulWidget {
   MyView({Key? key, this.title}) : super(key: key);
 
-  late String? title;
+  late final String? title;
 
   @override
   _MyViewState createState() => _MyViewState();
