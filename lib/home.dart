@@ -3,13 +3,15 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:intl/intl.dart';
 
 import 'stats.dart';
-import 'vaccine_stats.dart';
+import 'vaccineStats.dart';
+import 'passStat.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key, this.title = "Home"}) : super(key: key);
   String title;
   Future<Stats>? _futureStatistics;
   Future<VaccineStats>? _futureVaccineStatistics;
+  Future<PassStats>? _futurePassStatistics;
 
   _launchURLApp() async {
     const url = 'https://github.com/pcm-dpc/COVID-19';
@@ -29,10 +31,20 @@ class MyHomePage extends StatelessWidget {
     }
   }
 
+  _launchURLMinSaluteApp() async {
+    const url = 'https://github.com/ministero-salute';
+    if (await canLaunch(url)) {
+      await launch(url, forceSafariVC: true, forceWebView: true);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     _futureStatistics = fetchData();
     _futureVaccineStatistics = fetchVaccineData();
+    _futurePassStatistics = fetchPassData();
 
     return Scaffold(
       body: Center(
@@ -40,8 +52,7 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Container(
-                child:
-                    Text('Qualche statistica', style: TextStyle(fontSize: 24))),
+                child: Text('Statistiche', style: TextStyle(fontSize: 22))),
             Spacer(flex: 1),
             FutureBuilder<VaccineStats>(
                 future: _futureVaccineStatistics,
@@ -61,7 +72,7 @@ class MyHomePage extends StatelessWidget {
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.deepPurple,
-                                        fontSize: 20))
+                                        fontSize: 18))
                               ])),
                           Text.rich(TextSpan(
                               text: 'Dosi somministrate: ',
@@ -73,24 +84,49 @@ class MyHomePage extends StatelessWidget {
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.deepPurple,
-                                        fontSize: 20))
+                                        fontSize: 18))
                               ])),
                           Text.rich(TextSpan(
                               text: 'Booster somministrati: ',
                               children: <TextSpan>[
                                 TextSpan(
                                     text: NumberFormat.compact(locale: "it_IT")
-                                        .format(
-                                            snapshot.data?.dosiAggiuntive),
+                                        .format(snapshot.data?.dosiAggiuntive),
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.deepPurple,
-                                        fontSize: 20))
+                                        fontSize: 18))
                               ])),
                         ]);
                   } else {
                     return CircularProgressIndicator();
                   }
+                }),
+            FutureBuilder<PassStats>(
+                future: _futurePassStatistics,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text.rich(TextSpan(
+                              text: 'Green pass emessi: ',
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text:
+                                        '${NumberFormat.compact(locale: "it_IT").format(snapshot.data?.totalPassEmessi)} (+${NumberFormat.compact(locale: "it_IT").format(snapshot.data?.passEmessi)} da ieri)',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.green[900],
+                                        fontSize: 18))
+                              ]))
+                        ]);
+                  } else if (snapshot.hasError) {
+                    return Text("${snapshot.error}");
+                  }
+
+                  // By default, show a loading spinner.
+                  return CircularProgressIndicator();
                 }),
             FutureBuilder<Stats>(
               future: _futureStatistics,
@@ -107,7 +143,7 @@ class MyHomePage extends StatelessWidget {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.red,
-                                      fontSize: 20))
+                                      fontSize: 18))
                             ])),
                         Text.rich(TextSpan(
                             text: 'Terapie intensive: ',
@@ -118,17 +154,17 @@ class MyHomePage extends StatelessWidget {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.blue,
-                                      fontSize: 20))
+                                      fontSize: 18))
                             ])),
                         Text.rich(
                             TextSpan(text: 'Ricoverati: ', children: <TextSpan>[
                           TextSpan(
                               text:
-                                  '${snapshot.data?.ricoverati} (${(snapshot.data!.deltaRicoverati!>0)?"+":""}${snapshot.data?.deltaRicoverati} da ieri)',
+                                  '${snapshot.data?.ricoverati} (${(snapshot.data!.deltaRicoverati! > 0) ? "+" : ""}${snapshot.data?.deltaRicoverati} da ieri)',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.red,
-                                  fontSize: 20))
+                                  fontSize: 18))
                         ])),
                         Text.rich(TextSpan(
                             text: 'Totale positivi: ',
@@ -139,7 +175,7 @@ class MyHomePage extends StatelessWidget {
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.red,
-                                      fontSize: 20))
+                                      fontSize: 18))
                             ])),
                         Text.rich(
                             TextSpan(text: 'Deceduti: ', children: <TextSpan>[
@@ -149,7 +185,7 @@ class MyHomePage extends StatelessWidget {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
-                                  fontSize: 20))
+                                  fontSize: 18))
                         ])),
                         Text.rich(
                             TextSpan(text: 'Tamponi: ', children: <TextSpan>[
@@ -158,7 +194,7 @@ class MyHomePage extends StatelessWidget {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.green,
-                                  fontSize: 20))
+                                  fontSize: 18))
                         ])),
                         Wrap(
                           direction: Axis.horizontal,
@@ -171,19 +207,23 @@ class MyHomePage extends StatelessWidget {
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.red,
-                                    fontSize: 20)))
+                                    fontSize: 18)))
                           ],
                         ),
-                        Text.rich(TextSpan(
-                            text: 'Ultimo aggiornamento dalla Protezione Civile:',
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: '${snapshot.data?.data}',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.green,
-                                      fontSize: 20))
-                            ])),
+                        Text.rich(
+                          TextSpan(
+                              text:
+                                  'Ultimo aggiornamento dalla Protezione Civile:',
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: '${snapshot.data?.data}',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.green,
+                                        fontSize: 18))
+                              ]),
+                          maxLines: 2,
+                        ),
                         //Spacer(flex:1),
                       ]);
                 } else if (snapshot.hasError) {
@@ -195,32 +235,43 @@ class MyHomePage extends StatelessWidget {
               },
             ),
             Spacer(flex: 1),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Text("Sources: ",
-                  maxLines: 1,
-                  softWrap: true,
-                  overflow: TextOverflow.clip,
-                  style: TextStyle(fontSize: 6),
-                  textAlign: TextAlign.center),
-              GestureDetector(
-                  onTap: _launchURLApp,
-                  child: Text(
-                      "Sito del Dipartimento della Protezione Civile \n Emergenza Coronavirus: la risposta nazionale",
-                      maxLines: 3,
+            Flex(
+                direction: Axis.horizontal,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Sources: ",
+                      maxLines: 1,
                       softWrap: true,
                       overflow: TextOverflow.clip,
                       style: TextStyle(fontSize: 6),
-                      textAlign: TextAlign.left)),
-              GestureDetector(
-                  onTap: _launchURLCommisssarioApp,
-                  child: Text(
-                      "2021 (c) Commissario straordinario \n per l'emergenza Covid-19 \n Presidenza del Consiglio dei Ministri.",
-                      maxLines: 3,
-                      softWrap: true,
-                      overflow: TextOverflow.clip,
-                      style: TextStyle(fontSize: 6),
-                      textAlign: TextAlign.left))
-            ]),
+                      textAlign: TextAlign.center),
+                  GestureDetector(
+                      onTap: _launchURLApp,
+                      child: Text(
+                          "Sito del Dipartimento della Protezione Civile \n Emergenza Coronavirus: la risposta nazionale",
+                          maxLines: 3,
+                          softWrap: true,
+                          overflow: TextOverflow.clip,
+                          style: TextStyle(fontSize: 6),
+                          textAlign: TextAlign.left)),
+                  GestureDetector(
+                      onTap: _launchURLCommisssarioApp,
+                      child: Text(
+                          "2021 (c) Commissario straordinario \n per l'emergenza Covid-19 \n Presidenza del Consiglio dei Ministri.",
+                          maxLines: 3,
+                          softWrap: true,
+                          overflow: TextOverflow.clip,
+                          style: TextStyle(fontSize: 6),
+                          textAlign: TextAlign.left)),
+                  GestureDetector(
+                      onTap: _launchURLMinSaluteApp,
+                      child: Text("Copyright 2021 (c) Ministero della Salute.",
+                          maxLines: 3,
+                          softWrap: true,
+                          overflow: TextOverflow.clip,
+                          style: TextStyle(fontSize: 6),
+                          textAlign: TextAlign.left))
+                ]),
             Spacer(flex: 2),
           ],
         ),

@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
 class MyView extends StatefulWidget {
   MyView({Key? key, this.title}) : super(key: key);
 
-  String? title;
+  late final String? title;
 
   @override
   _MyViewState createState() => _MyViewState();
@@ -43,7 +43,7 @@ class _MyViewState extends State<MyView> {
 
   static List<Widget> _pagesOptions = [
     MyHomePage(title: "Home"),
-    MyPlotPage(title: "Trends"),
+    MyPlotPage(title: "Trends (moving average)"),
     MyRegionalPage(title: "Regioni")
   ];
 

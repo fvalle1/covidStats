@@ -1,3 +1,4 @@
+import 'package:covid_stats/passPlot.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
@@ -93,6 +94,14 @@ class _MyPlotPageState extends State<MyPlotPage> {
                       setState(() {
                         _currentTrend = "Nuovi positivi";
                         _futurePlotData = fetchPlotSeries("nuovi_positivi");
+                      });
+                    }),
+                ElevatedButton(
+                    child: Text("green pass"),
+                    onPressed: () {
+                      setState(() {
+                        _currentTrend = "Green Pass emessi";
+                        _futurePlotData = fetchPassPlotSeries();
                       });
                     })
               ],
