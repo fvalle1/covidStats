@@ -43,7 +43,7 @@ class _MyViewState extends State<MyView> {
 
   static List<Widget> _pagesOptions = [
     MyHomePage(title: "Home"),
-    MyPlotPage(title: "Trends"),
+    MyPlotPage(title: "Trends (moving average)"),
     MyRegionalPage(title: "Regioni")
   ];
 
