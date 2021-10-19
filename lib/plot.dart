@@ -26,22 +26,22 @@ class PlotSeries {
         var numerator = 0.0;
         var denominator = 0.0;
         if (delta) {
-          for(int j= i-3; j<i+4;j++){
+          for (int j = i - 3; j < i + 4; j++) {
             numerator += double.parse(
-              '${(json[j][keys[0]] - json[j - 1][keys[0]]).toDouble().abs()}');
+                '${(json[j][keys[0]] - json[j - 1][keys[0]]).toDouble().abs()}');
           }
         } else {
-          for(int j= i-3; j<i+4;j++){
+          for (int j = i - 3; j < i + 4; j++) {
             numerator += double.parse('${(json[j][keys[0]]).abs()}');
           }
         }
         if (deltaDenominator) {
-          for(int j= i-3; j<i+4;j++){
-          denominator += double.parse(
-              '${(json[j][keys[1]] - json[j - 1][keys[1]]).abs()}');
+          for (int j = i - 3; j < i + 4; j++) {
+            denominator += double.parse(
+                '${(json[j][keys[1]] - json[j - 1][keys[1]]).abs()}');
           }
         } else {
-          for(int j= i-3; j<i+4;j++){
+          for (int j = i - 3; j < i + 4; j++) {
             denominator = double.parse('${json[j][keys[1]]}');
           }
         }
@@ -51,27 +51,29 @@ class PlotSeries {
           denominator = 1.0;
         }
         _data.add(MeasureData(
-            day: DateTime.parse(json[i]["data"]), value: double.parse('${numerator / denominator * 100}')));
+            day: DateTime.parse(json[i]["data"]),
+            value: double.parse('${numerator / denominator * 100}')));
       }
     } else {
       if (delta) {
-        for (var i = 4; i < json.length-3; i++) {
+        for (var i = 4; i < json.length - 3; i++) {
           double val = 0;
-          for(int j= i-3; j<i+4;j++){
+          for (int j = i - 3; j < i + 4; j++) {
             val += double.parse('${json[j][label] - json[j - 1][label]}');
-          } 
+          }
           _data.add(MeasureData(
               day: DateTime.parse(json[i]["data"]),
-              value: double.parse('${val/7.0}')));
+              value: double.parse('${val / 7.0}')));
         }
       } else {
-        for (var i = 4; i < json.length-4; i++) {
+        for (var i = 4; i < json.length - 4; i++) {
           double val = 0;
-          for(int j= i-3; j<i+4;j++){
+          for (int j = i - 3; j < i + 4; j++) {
             val += double.parse('${json[j][label]}');
-          } 
-          _data.add(
-              MeasureData(day: DateTime.parse(json[i]["data"]), value: double.parse('${val/7.0}')));
+          }
+          _data.add(MeasureData(
+              day: DateTime.parse(json[i]["data"]),
+              value: double.parse('${val / 7.0}')));
         }
       }
     }
@@ -90,10 +92,8 @@ class PlotSeries {
 
 Future<PlotSeries> fetchPlotSeries(String label,
     {bool delta = false, bool deltaDenominator = false}) async {
-  final response = await http.get(
-      Uri.parse(
-      'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json')
-      );
+  final response = await http.get(Uri.parse(
+      'https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json'));
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,

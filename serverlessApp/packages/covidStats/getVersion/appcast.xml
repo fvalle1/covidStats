@@ -3,10 +3,10 @@
     <channel>
         <title>Covid Stats - Appcast</title>
         <item>
-            <title>Version 2.4.0</title>
-            <description>Introduce pregressa_infezione</description>
+            <title>Version 3.0.0</title>
+            <description>Introduce green pass</description>
             <pubDate>Thu, 14 Oct 2021 21:02:00 +0000</pubDate>
-            <enclosure url="https://api.codemagic.io/artifacts/f2b63883-ef1d-4497-9f50-06d1a28e7889/76d4688a-7edb-4812-8351-d33a7f16aec2/app-release-universal.apk" sparkle:version="2.4.0" sparkle:os="android" />
+            <enclosure url="" sparkle:version="3.0.0" sparkle:os="android" />
         </item>
     </channel>
 </rss>
