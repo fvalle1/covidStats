@@ -1,5 +1,5 @@
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:covid_stats/plot.dart';
+import 'package:dati_italia/plot.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:core';
