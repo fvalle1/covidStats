@@ -23,7 +23,7 @@ class VaccineStats {
     for (var item in json) {
       int primaDose = item["prima_dose"];
       int secondaDose = item["seconda_dose"];
-      dosiAggiuntive += item["dose_aggiuntiva"] as int? ?? 0;
+      dosiAggiuntive += item["dose_addizionale_booster"] as int? ?? 0;
       var fornitore = item["fornitore"];
       //some vaccines requires two doses
       switch (fornitore) {

@@ -3,10 +3,10 @@
     <channel>
         <title>Covid Stats - Appcast</title>
         <item>
-            <title>Version 3.0.1</title>
-            <description>Introduce green pass</description>
-            <pubDate>Tue, 18 Oct 2021 07:24:00 +0000</pubDate>
-            <enclosure url="https://api.codemagic.io/artifacts/db4c89cf-a4fd-470f-b118-876efa6d69fe/cd785e79-3264-4ccf-9afe-7717625c1274/app-release-universal.apk" sparkle:version="3.0.1" sparkle:os="android" />
+            <title>Version 4.0.0</title>
+            <description>Introduce Immuni</description>
+            <pubDate>Mon, 29 Nov 2021 07:24:00 +0000</pubDate>
+            <enclosure url="https://static.codemagic.io/files/f7798da0-a271-4d48-824e-88478f953716/29e153a3-ca46-4f8e-85fc-53e5c986aa9c/app-release.aab" sparkle:version="4.0.0" sparkle:os="android" />
         </item>
     </channel>
 </rss>

@@ -1,4 +1,5 @@
-import 'package:covid_stats/passPlot.dart';
+import 'package:dati_italia/immuniPlot.dart';
+import 'package:dati_italia/passPlot.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
@@ -103,7 +104,24 @@ class _MyPlotPageState extends State<MyPlotPage> {
                         _currentTrend = "Green Pass emessi";
                         _futurePlotData = fetchPassPlotSeries();
                       });
-                    })
+                    }),
+                ElevatedButton(
+                    child: Text("segnalazioni immuni"),
+                    onPressed: () {
+                      setState(() {
+                        _currentTrend = "Segnalazioni effettuate su Immuni";
+                        _futurePlotData =
+                            fetchImmuniPlotSeries(label: "utenti_positivi");
+                      });
+                    }),
+                ElevatedButton(
+                    child: Text("notifiche immuni"),
+                    onPressed: () {
+                      setState(() {
+                        _currentTrend = "Notifiche inviate da Immuni";
+                        _futurePlotData = fetchImmuniPlotSeries(label: "notifiche_inviate");
+                      });
+                    }),
               ],
             )
           ],
