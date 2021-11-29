@@ -106,14 +106,6 @@ class _MyPlotPageState extends State<MyPlotPage> {
                       });
                     }),
                 ElevatedButton(
-                    child: Text("notifiche immuni"),
-                    onPressed: () {
-                      setState(() {
-                        _currentTrend = "Notifiche inviate da Immuni";
-                        _futurePlotData = fetchImmuniPlotSeries(label: "notifiche_inviate");
-                      });
-                    }),
-                ElevatedButton(
                     child: Text("segnalazioni immuni"),
                     onPressed: () {
                       setState(() {
@@ -121,7 +113,15 @@ class _MyPlotPageState extends State<MyPlotPage> {
                         _futurePlotData =
                             fetchImmuniPlotSeries(label: "utenti_positivi");
                       });
-                    })
+                    }),
+                ElevatedButton(
+                    child: Text("notifiche immuni"),
+                    onPressed: () {
+                      setState(() {
+                        _currentTrend = "Notifiche inviate da Immuni";
+                        _futurePlotData = fetchImmuniPlotSeries(label: "notifiche_inviate");
+                      });
+                    }),
               ],
             )
           ],

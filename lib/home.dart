@@ -107,68 +107,6 @@ class MyHomePage extends StatelessWidget {
                     return CircularProgressIndicator();
                   }
                 }),
-            FutureBuilder<PassStats>(
-                future: _futurePassStatistics,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text.rich(TextSpan(
-                              text: 'Green pass emessi: ',
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text:
-                                        '${NumberFormat.compact(locale: "it_IT").format(snapshot.data?.totalPassEmessi)} (+${NumberFormat.compact(locale: "it_IT").format(snapshot.data?.passEmessi)} da ieri)',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.green[900],
-                                        fontSize: 18))
-                              ]))
-                        ]);
-                  } else if (snapshot.hasError) {
-                    return Text("${snapshot.error}");
-                  }
-
-                  // By default, show a loading spinner.
-                  return CircularProgressIndicator();
-                }),
-            FutureBuilder<ImmuniStats>(
-                future: _futureImmuniStatistics,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text.rich(TextSpan(
-                              text: 'Notifiche Immuni inviate: ',
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text:
-                                        '${NumberFormat.compact(locale: "it_IT").format(snapshot.data?.totaleNotifiche)} (+${NumberFormat.compact(locale: "it_IT").format(snapshot.data?.notificheInviate)} da ieri)',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Color.fromRGBO(88, 88, 255, 1),
-                                        fontSize: 18))
-                              ])),
-                              Text.rich(TextSpan(
-                              text: 'Segnalazioni Immuni: ',
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text:
-                                        '${NumberFormat.compact(locale: "it_IT").format(snapshot.data?.totaleUtentiPositivi)} (+${NumberFormat.compact(locale: "it_IT").format(snapshot.data?.utentiPositivi)} da ieri)',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Color.fromRGBO(88, 88, 255, 1),
-                                        fontSize: 18))
-                              ]))
-                        ]);
-                  } else if (snapshot.hasError) {
-                    return Text("${snapshot.error}");
-                  }
-                  // By default, show a loading spinner.
-                  return CircularProgressIndicator();
-                }),
             FutureBuilder<Stats>(
               future: _futureStatistics,
               builder: (context, snapshot) {
@@ -275,6 +213,68 @@ class MyHomePage extends StatelessWidget {
                 return CircularProgressIndicator();
               },
             ),
+            FutureBuilder<PassStats>(
+                future: _futurePassStatistics,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text.rich(TextSpan(
+                              text: 'Green pass emessi: ',
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text:
+                                        '${NumberFormat.compact(locale: "it_IT").format(snapshot.data?.totalPassEmessi)} (+${NumberFormat.compact(locale: "it_IT").format(snapshot.data?.passEmessi)} da ieri)',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.green[900],
+                                        fontSize: 18))
+                              ]))
+                        ]);
+                  } else if (snapshot.hasError) {
+                    return Text("${snapshot.error}");
+                  }
+
+                  // By default, show a loading spinner.
+                  return CircularProgressIndicator();
+                }),
+            FutureBuilder<ImmuniStats>(
+                future: _futureImmuniStatistics,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text.rich(TextSpan(
+                              text: 'Segnalazioni Immuni: ',
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text:
+                                        '${NumberFormat.compact(locale: "it_IT").format(snapshot.data?.totaleUtentiPositivi)} (+${NumberFormat.compact(locale: "it_IT").format(snapshot.data?.utentiPositivi)} da ieri)',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Color.fromRGBO(88, 88, 255, 1),
+                                        fontSize: 18))
+                              ])),
+                          Text.rich(TextSpan(
+                              text: 'Notifiche Immuni inviate: ',
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text:
+                                        '${NumberFormat.compact(locale: "it_IT").format(snapshot.data?.totaleNotifiche)} (+${NumberFormat.compact(locale: "it_IT").format(snapshot.data?.notificheInviate)} da ieri)',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Color.fromRGBO(88, 88, 255, 1),
+                                        fontSize: 18))
+                              ]))
+                        ]);
+                  } else if (snapshot.hasError) {
+                    return Text("${snapshot.error}");
+                  }
+                  // By default, show a loading spinner.
+                  return CircularProgressIndicator();
+                }),
             Spacer(flex: 1),
             Flex(
                 direction: Axis.horizontal,

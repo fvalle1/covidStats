@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Italy Covid Stats',
+      title: 'Italia OpenData pandemia',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
