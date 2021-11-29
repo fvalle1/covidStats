@@ -57,7 +57,7 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Container(
-                child: Text('Statistiche', style: TextStyle(fontSize: 22))),
+                child: Text('Dati', style: TextStyle(fontSize: 22))),
             Spacer(flex: 1),
             FutureBuilder<VaccineStats>(
                 future: _futureVaccineStatistics,
