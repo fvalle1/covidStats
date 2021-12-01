@@ -3,10 +3,10 @@
     <channel>
         <title>Covid Stats - Appcast</title>
         <item>
-            <title>Version 4.0.0</title>
-            <description>Introduce Immuni</description>
-            <pubDate>Mon, 29 Nov 2021 07:24:00 +0000</pubDate>
-            <enclosure url="https://static.codemagic.io/files/f7798da0-a271-4d48-824e-88478f953716/29e153a3-ca46-4f8e-85fc-53e5c986aa9c/app-release.aab" sparkle:version="4.0.0" sparkle:os="android" />
+            <title>Version 4.1.0</title>
+            <description>Theme fixing</description>
+            <pubDate>Tue, 1 Dec 2021 06:20:00 +0000</pubDate>
+            <enclosure url="https://static.codemagic.io/files/20edd32b-1486-4d7e-8c7c-bfe22d25eda7/42b2856e-ac8d-4650-8170-c05f5233f40d/app-release-universal.apk" sparkle:version="4.1.0" sparkle:os="android" />
         </item>
     </channel>
 </rss>
