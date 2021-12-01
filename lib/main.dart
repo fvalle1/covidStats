@@ -1,3 +1,4 @@
+import 'package:dati_italia/InfoPage.dart';
 import 'package:flutter/material.dart';
 
 import 'home.dart';
@@ -44,7 +45,8 @@ class _MyViewState extends State<MyView> {
   static List<Widget> _pagesOptions = [
     MyHomePage(title: "Home"),
     MyPlotPage(title: "Trends (moving average)"),
-    MyRegionalPage(title: "Regioni")
+    MyRegionalPage(title: "Regioni"),
+    InfoPage()
   ];
 
   @override
@@ -62,6 +64,7 @@ class _MyViewState extends State<MyView> {
       body: UpgradeAlert(
         appcastConfig: cfg,
         debugLogging: true,
+        countryCode: 'it',
         child: _pagesOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -77,10 +80,17 @@ class _MyViewState extends State<MyView> {
           BottomNavigationBarItem(
             icon: Icon(Icons.map),
             label: 'Regioni',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.info),
+            label: 'Info',
           )
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue[300],
+        //fixedColor: Colors.purple,
+        selectedItemColor: Colors.purple[900],
+        unselectedItemColor: Colors.grey[600],
+        backgroundColor: Colors.grey[200],
         onTap: _onBottomBarTap,
       ),
     );

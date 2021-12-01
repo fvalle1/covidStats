@@ -53,11 +53,14 @@ class MyHomePage extends StatelessWidget {
 
     return Scaffold(
       body: Center(
+          child: SingleChildScrollView(
+              child: Container(
+        alignment: Alignment.topCenter,
+        height: 500,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Container(
-                child: Text('Dati', style: TextStyle(fontSize: 22))),
+            Container(child: Text('Dati', style: TextStyle(fontSize: 22))),
             Spacer(flex: 1),
             FutureBuilder<VaccineStats>(
                 future: _futureVaccineStatistics,
@@ -316,7 +319,7 @@ class MyHomePage extends StatelessWidget {
             Spacer(flex: 2),
           ],
         ),
-      ),
+      ))),
     );
   }
 }
