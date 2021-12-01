@@ -87,9 +87,12 @@ class _MyViewState extends State<MyView> {
           )
         ],
         currentIndex: _selectedIndex,
-        //fixedColor: Colors.purple,
         selectedItemColor: Colors.purple[900],
+        selectedLabelStyle: TextStyle(color: Colors.purple[900]),
         unselectedItemColor: Colors.grey[600],
+        unselectedLabelStyle: TextStyle(color: Colors.grey[600]),
+        showUnselectedLabels: true,
+        showSelectedLabels: true,
         backgroundColor: Colors.grey[200],
         onTap: _onBottomBarTap,
       ),
