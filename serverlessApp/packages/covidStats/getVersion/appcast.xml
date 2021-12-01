@@ -6,7 +6,7 @@
             <title>Version 4.1.0</title>
             <description>Theme fixing</description>
             <pubDate>Tue, 1 Dec 2021 06:20:00 +0000</pubDate>
-            <enclosure url="https://static.codemagic.io/files/20edd32b-1486-4d7e-8c7c-bfe22d25eda7/42b2856e-ac8d-4650-8170-c05f5233f40d/app-release-universal.apk" sparkle:version="4.1.0" sparkle:os="android" />
+            <enclosure url="https://static.codemagic.io/files/604f1d08-7bad-4f43-ac48-2f8775f5506d/0fa29aa0-3c71-4f5b-9a98-e54a71df36f1/app-release-universal.apk" sparkle:version="4.1.0" sparkle:os="android" />
         </item>
     </channel>
 </rss>
