@@ -3,10 +3,10 @@
     <channel>
         <title>Covid Stats - Appcast</title>
         <item>
-            <title>Version 4.1.0</title>
+            <title>Version 4.1.2</title>
             <description>Theme fixing</description>
-            <pubDate>Tue, 1 Dec 2021 06:20:00 +0000</pubDate>
-            <enclosure url="https://static.codemagic.io/files/604f1d08-7bad-4f43-ac48-2f8775f5506d/0fa29aa0-3c71-4f5b-9a98-e54a71df36f1/app-release-universal.apk" sparkle:version="4.1.0" sparkle:os="android" />
+            <pubDate>Wed, 2 Dec 2021 06:23:02 +0100</pubDate>
+            <enclosure url="https://static.codemagic.io/files/816a2728-7b15-40f0-82f6-6b7cc1e609a9/ad50aa4c-b514-44fd-a9be-da94415e47ab/app-release-universal.apk" sparkle:version="4.1.2" sparkle:os="android" />
         </item>
     </channel>
 </rss>
