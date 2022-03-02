@@ -4,14 +4,14 @@
     "namespace": "filippov-hko4rv9s2jb",
     "packageVersions": {
       "covidStats": {
-        "version": "0.0.26",
+        "version": "0.0.28",
         "digest": "0ba649ac589445cc4b083bcf230f8e8effbc77f54ef6c9f5440099a5ff2ed856"
       }
     },
     "actionVersions": {
       "covidStats/getVersion": {
-        "version": "0.0.26",
-        "digest": "4ad2583ed1f565e0e2d10d84df6de30bb18a89e5bf6122fac34f0cfd1801ac34"
+        "version": "0.0.28",
+        "digest": "04753e143db6711929e543b708bf045067a5aed6554d6af3c1a10ad8888a5d54"
       }
     },
     "webHashes": {}
