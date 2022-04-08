@@ -3,10 +3,11 @@
     <channel>
         <title>Covid Stats - Appcast</title>
         <item>
-            <title>Version 4.1.3</title>
+            <title>Version 4.1.4</title>
             <description>Update dependencies</description>
-            <pubDate>Wed, 2 Mar 2022 06:23:02 +0100</pubDate>
-            <enclosure url="https://static.codemagic.io/files/42b9a3dd-0dae-4a5f-b751-1bbeb73656f5/c3be9e03-9d8e-4aef-9b8d-dd9a2e4268df/app-release-universal.apk" sparkle:version="4.1.3" sparkle:os="android" />
+            <pubDate>Wed, 8 Apr 2022 08:23:02 +0100</pubDate>
+            <enclosure url="https://static.codemagic.io/files/b3c7225c-ddc9-4b7c-a880-8130df4117bf/edff4e7a-1591-4f7a-874e-22e6e8882cfa/app-release-universal.apk" 
+sparkle:version="4.1.4" sparkle:os="android" />
         </item>
     </channel>
 </rss>
