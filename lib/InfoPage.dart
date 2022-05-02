@@ -1,19 +1,19 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 // import 'package:package_info/package_info.dart';
 
 class InfoPage extends StatelessWidget {
   void launchGitUrl() async {
-    var url = "https://github.com/fvalle1/covidStats/";
-    if (await canLaunch(url)) {
-      await launch(url, forceSafariVC: true, forceWebView: true);
+    var url = Uri.parse("https://github.com/fvalle1/covidStats/");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
+    return CupertinoPageScaffold(
+        child: Center(
             child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -35,12 +35,10 @@ class InfoPage extends StatelessWidget {
         //     }
         //   },
         // ),
-        Text("v 4.1.4", style: TextStyle(fontSize: 25)),
-        Text("by Filippo Valle",
-            style: TextStyle(fontSize: 25)),
+        Text("v 5.1.0", style: TextStyle(fontSize: 25)),
+        Text("by Filippo Valle", style: TextStyle(fontSize: 25)),
         Spacer(flex: 2),
-        Text("App open Source",
-            style: TextStyle(fontSize: 20)),
+        Text("App open Source", style: TextStyle(fontSize: 20)),
         GestureDetector(
           onTap: launchGitUrl,
           child: Text(
@@ -49,8 +47,7 @@ class InfoPage extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        Text("Rilasciata con Licenza GPL v3",
-            style: TextStyle(fontSize: 18)),
+        Text("Rilasciata con Licenza GPL v3", style: TextStyle(fontSize: 18)),
         Spacer(flex: 1)
       ],
     )));

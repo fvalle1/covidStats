@@ -2,7 +2,7 @@ import "package:charts_flutter/flutter.dart" as charts;
 import 'package:charts_flutter/flutter.dart';
 import 'package:dati_italia/immuniStat.dart';
 import 'package:dati_italia/plot.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class ImmuniPlot extends PlotSeries {
   factory ImmuniPlot.makeImmuniSeries(List<dynamic> json,
@@ -18,7 +18,7 @@ class ImmuniPlot extends PlotSeries {
       }
       var dataPoint = MeasureData(
           day: DateTime.parse(json[i]["data"]), value: (value / 7.0));
-      dataPoint.color = charts.ColorUtil.fromDartColor(Colors.purple[800]!);
+      dataPoint.color = charts.ColorUtil.fromDartColor(CupertinoColors.systemPurple);
       _data.add(dataPoint);
     }
 

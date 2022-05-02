@@ -1,6 +1,6 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:dati_italia/plot.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'dart:core';
 
 import 'stats.dart';
@@ -34,11 +34,11 @@ class _MyRegionPageState extends State<MyRegionPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
+    return CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
+          middle: Text(widget.title),
         ),
-        body: Center(
+        child: Center(
             child: Column(
           children: [
             _showStats
@@ -56,7 +56,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                         text: '${snapshot.data?.nuoviPositivi}',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.red,
+                                            color: CupertinoColors.systemRed,
                                             fontSize: 20))
                                   ])),
                               Text.rich(TextSpan(
@@ -67,7 +67,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                             '${snapshot.data?.terapiaIntensiva} (${(snapshot.data!.deltaTerapiaIntensiva! > 0) ? "+" : ""}${snapshot.data?.deltaTerapiaIntensiva} da ieri)',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.blue,
+                                            color: CupertinoColors.systemBlue,
                                             fontSize: 20))
                                   ])),
                               Text.rich(TextSpan(
@@ -78,7 +78,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                             '${snapshot.data?.ricoverati} (${(snapshot.data!.deltaRicoverati! > 0) ? "+" : ""}${snapshot.data?.deltaRicoverati} da ieri)',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.red,
+                                            color: CupertinoColors.systemRed,
                                             fontSize: 20))
                                   ])),
                               Text.rich(TextSpan(
@@ -89,7 +89,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                             '${snapshot.data?.totalePositivi} (${(snapshot.data!.totalePositivi! > snapshot.data!.previousTotalePositivi!) ? "+" : ""}${snapshot.data!.totalePositivi! - snapshot.data!.previousTotalePositivi!} da ieri)',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.red,
+                                            color: CupertinoColors.systemRed,
                                             fontSize: 20))
                                   ])),
                               Text.rich(TextSpan(
@@ -100,7 +100,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                             '${snapshot.data?.deceduti} (ieri ${snapshot.data?.deltaDeceduti})',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.black,
+                                            color: CupertinoColors.black,
                                             fontSize: 20))
                                   ])),
                               Text.rich(TextSpan(
@@ -110,7 +110,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                         text: '${snapshot.data?.tamponi}',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.green,
+                                            color: CupertinoColors.systemGreen,
                                             fontSize: 20))
                                   ])),
                               Wrap(
@@ -123,7 +123,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                           '${snapshot.data?.frazioneTamponi?.toStringAsFixed(1)}% (ieri ${snapshot.data?.deltaFrazioneTamponi?.toStringAsFixed(1)}%)',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.red,
+                                          color: CupertinoColors.systemRed,
                                           fontSize: 20)))
                                 ],
                               ),
@@ -134,7 +134,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                         text: '${snapshot.data?.data}',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.green,
+                                            color: CupertinoColors.systemGreen,
                                             fontSize: 20))
                                   ])),
                               //Spacer(flex:1),
@@ -144,7 +144,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                       }
 
                       // By default, show a loading spinner.
-                      return CircularProgressIndicator();
+                      return CupertinoActivityIndicator();
                     },
                   )
                 : Container(),
@@ -168,13 +168,13 @@ class _MyRegionPageState extends State<MyRegionPage> {
                           }
 
                           // By default, show a loading spinner.
-                          return CircularProgressIndicator();
+                          return CupertinoActivityIndicator();
                         })
                     : Spacer(flex: 1)),
             _showPlots
                 ? Wrap(
                     children: [
-                      ElevatedButton(
+                      CupertinoButton(
                           child: Text("totale positivi"),
                           onPressed: () {
                             setState(() {
@@ -183,7 +183,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                   widget.title, "totale_positivi");
                             });
                           }),
-                      ElevatedButton(
+                      CupertinoButton(
                           child: Text("percentuale positivi"),
                           onPressed: () {
                             setState(() {
@@ -193,7 +193,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                   delta: false, deltaDenominator: true);
                             });
                           }),
-                      ElevatedButton(
+                      CupertinoButton(
                           child: Text("terapie intensive"),
                           onPressed: () {
                             setState(() {
@@ -202,7 +202,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                   widget.title, "terapia_intensiva");
                             });
                           }),
-                      ElevatedButton(
+                      CupertinoButton(
                           child: Text("morti"),
                           onPressed: () {
                             setState(() {
@@ -212,7 +212,7 @@ class _MyRegionPageState extends State<MyRegionPage> {
                                   delta: true);
                             });
                           }),
-                      ElevatedButton(
+                      CupertinoButton(
                           child: Text("nuovi positivi"),
                           onPressed: () {
                             setState(() {
@@ -225,12 +225,12 @@ class _MyRegionPageState extends State<MyRegionPage> {
                   )
                 : Container(),
             Wrap(direction: Axis.horizontal, spacing: 1, children: [
-              ElevatedButton(
+              CupertinoButton(
                   child: Text("indietro"),
                   onPressed: () {
                     Navigator.pop(context);
                   }),
-              ElevatedButton(
+              CupertinoButton(
                   child: _showPlots ? Text("mostra dati") : Text("mostra plot"),
                   onPressed: () {
                     setState(() {

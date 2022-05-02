@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'regionPage.dart';
 
@@ -36,20 +36,20 @@ class MyRegionalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(title),
+    return CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
+          middle: Text(title),
         ),
-        body: Center(
+        child: Center(
             child: ListView.builder(
                 itemCount: _itemCount,
                 itemBuilder: (BuildContext context, int index) {
-                  return ElevatedButton(
+                  return CupertinoButton(
                       child: Text("${_regions[index]}"),
                       onPressed: () {
                         Navigator.push(
                             context,
-                            MaterialPageRoute(
+                            CupertinoPageRoute(
                                 builder: (context) =>
                                     _getRegionalWidget(index)));
                         //Navigator.pop(context);

@@ -2,7 +2,7 @@ import "package:charts_flutter/flutter.dart" as charts;
 import 'package:charts_flutter/flutter.dart';
 import 'package:dati_italia/passStat.dart';
 import 'package:dati_italia/plot.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class PassPlot extends PlotSeries {
   factory PassPlot.makePassSeries(List<dynamic> json) {
@@ -17,7 +17,7 @@ class PassPlot extends PlotSeries {
       }
       var dataPoint =
           MeasureData(day: DateTime.parse(json[i]["data"]), value: (value / 7.0));
-      dataPoint.color = charts.ColorUtil.fromDartColor(Colors.green[900]!);
+      dataPoint.color = charts.ColorUtil.fromDartColor(CupertinoColors.systemGreen);
       _data.add(dataPoint);
     }
 

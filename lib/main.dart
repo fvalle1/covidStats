@@ -1,5 +1,5 @@
 import 'package:dati_italia/InfoPage.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'home.dart';
 import 'plotPage.dart';
@@ -7,17 +7,19 @@ import 'regionalPage.dart';
 import 'package:upgrader/upgrader.dart';
 
 void main() {
-    runApp(MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return CupertinoApp(
       title: 'Italia OpenData pandemia',
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
+      theme: CupertinoThemeData(
+        primaryColor: CupertinoColors.systemPurple,
+        barBackgroundColor: CupertinoColors.systemGrey,
+        scaffoldBackgroundColor: CupertinoColors.white,
       ),
       home: MyView(),
     );
@@ -55,47 +57,43 @@ class _MyViewState extends State<MyView> {
         'https://filippov-hko4rv9s2jb-apigcp.nimbella.io/api/covidStats/getVersion';
     final cfg = AppcastConfiguration(url: appcastURL, supportedOS: ['android']);
 
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text("COVID-19 dati"),
-      ),
-      body: UpgradeAlert(
-        appcastConfig: cfg,
-        debugLogging: true,
-        countryCode: 'it',
-        child: _pagesOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+    return CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
+          // Here we take the value from the MyHomePage object that was created by
+          // the App.build method, and use it to set our appbar title.
+          middle: const Text("COVID-19 dati"),
+        ),
+        child: CupertinoTabScaffold(
+          tabBuilder: (context, _selectedIndex) => UpgradeAlert(
+            appcastConfig: cfg,
+            debugLogging: true,
+            countryCode: 'it',
+            child: _pagesOptions.elementAt(_selectedIndex),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.bar_chart),
-            label: 'Grafici',
+          tabBar: CupertinoTabBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.chart_bar),
+                label: 'Grafici',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.map),
+                label: 'Regioni',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.info),
+                label: 'Info',
+              )
+            ],
+            currentIndex: _selectedIndex,
+            activeColor: CupertinoColors.systemPurple,
+            backgroundColor: CupertinoColors.white,
+            onTap: _onBottomBarTap,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map),
-            label: 'Regioni',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'Info',
-          )
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.purple[900],
-        selectedLabelStyle: TextStyle(color: Colors.purple[900]),
-        unselectedItemColor: Colors.grey[600],
-        unselectedLabelStyle: TextStyle(color: Colors.grey[600]),
-        showUnselectedLabels: true,
-        showSelectedLabels: true,
-        backgroundColor: Colors.grey[200],
-        onTap: _onBottomBarTap,
-      ),
-    );
+        ));
   }
 }

@@ -1,5 +1,5 @@
 import "package:charts_flutter/flutter.dart" as charts;
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:core';
@@ -7,7 +7,7 @@ import 'dart:core';
 class MeasureData {
   DateTime? day;
   double? value;
-  charts.Color color = charts.ColorUtil.fromDartColor(Colors.grey);
+  charts.Color color = charts.ColorUtil.fromDartColor(CupertinoColors.systemGrey);
   MeasureData({@required this.day, @required this.value});
 }
 

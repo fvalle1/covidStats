@@ -1,6 +1,6 @@
 import 'package:dati_italia/immuniPlot.dart';
 import 'package:dati_italia/passPlot.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 import 'plot.dart';
@@ -28,11 +28,11 @@ class _MyPlotPageState extends State<MyPlotPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: Text(widget.title),
       ),
-      body: Center(
+      child: Center(
         child: Column(
           children: <Widget>[
             Container(
@@ -51,13 +51,13 @@ class _MyPlotPageState extends State<MyPlotPage> {
                   }
 
                   // By default, show a loading spinner.
-                  return CircularProgressIndicator();
+                  return CupertinoActivityIndicator();
                 }),
             Wrap(
               direction: Axis.horizontal,
               spacing: 1,
               children: [
-                ElevatedButton(
+                CupertinoButton(
                     child: Text("totale positivi"),
                     onPressed: () {
                       setState(() {
@@ -65,7 +65,7 @@ class _MyPlotPageState extends State<MyPlotPage> {
                         _futurePlotData = fetchPlotSeries("totale_positivi");
                       });
                     }),
-                ElevatedButton(
+                CupertinoButton(
                     child: Text("percentuale positivi"),
                     onPressed: () {
                       setState(() {
@@ -73,7 +73,7 @@ class _MyPlotPageState extends State<MyPlotPage> {
                         _futurePlotData = fetchPlotSeries("nuovi_positivi/tamponi", delta:false, deltaDenominator:true);
                       });
                     }),
-                ElevatedButton(
+                CupertinoButton(
                     child: Text("terapie intensive"),
                     onPressed: () {
                       setState(() {
@@ -81,7 +81,7 @@ class _MyPlotPageState extends State<MyPlotPage> {
                         _futurePlotData = fetchPlotSeries("terapia_intensiva");
                       });
                     }),
-                ElevatedButton(
+                CupertinoButton(
                     child: Text("morti"),
                     onPressed: () {
                       setState(() {
@@ -89,7 +89,7 @@ class _MyPlotPageState extends State<MyPlotPage> {
                         _futurePlotData = fetchPlotSeries("deceduti", delta: true);
                       });
                     }),
-                ElevatedButton(
+                CupertinoButton(
                     child: Text("nuovi positivi"),
                     onPressed: () {
                       setState(() {
@@ -97,7 +97,7 @@ class _MyPlotPageState extends State<MyPlotPage> {
                         _futurePlotData = fetchPlotSeries("nuovi_positivi");
                       });
                     }),
-                ElevatedButton(
+                CupertinoButton(
                     child: Text("green pass"),
                     onPressed: () {
                       setState(() {
@@ -105,7 +105,7 @@ class _MyPlotPageState extends State<MyPlotPage> {
                         _futurePlotData = fetchPassPlotSeries();
                       });
                     }),
-                ElevatedButton(
+                CupertinoButton(
                     child: Text("segnalazioni immuni"),
                     onPressed: () {
                       setState(() {
@@ -114,7 +114,7 @@ class _MyPlotPageState extends State<MyPlotPage> {
                             fetchImmuniPlotSeries(label: "utenti_positivi");
                       });
                     }),
-                ElevatedButton(
+                CupertinoButton(
                     child: Text("notifiche immuni"),
                     onPressed: () {
                       setState(() {
