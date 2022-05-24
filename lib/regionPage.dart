@@ -225,12 +225,12 @@ class _MyRegionPageState extends State<MyRegionPage> {
                   )
                 : Container(),
             Wrap(direction: Axis.horizontal, spacing: 1, children: [
-              CupertinoButton(
+              CupertinoButton.filled(
                   child: Text("indietro"),
                   onPressed: () {
                     Navigator.pop(context);
                   }),
-              CupertinoButton(
+              CupertinoButton.filled(
                   child: _showPlots ? Text("mostra dati") : Text("mostra plot"),
                   onPressed: () {
                     setState(() {
