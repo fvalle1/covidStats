@@ -54,7 +54,7 @@ class _MyViewState extends State<MyView> {
   @override
   Widget build(BuildContext context) {
     final appcastURL =
-        'https://filippov-hko4rv9s2jb-apigcp.nimbella.io/api/covidStats/getVersion';
+        'https://zotviewer.site/appcast.xml';
     final cfg = AppcastConfiguration(url: appcastURL, supportedOS: ['android']);
 
     return CupertinoPageScaffold(

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Covidstats
+Comment=Dati sulla pandemia in Italia
+Exec=covidstats
+Icon=${SNAP}/meta/gui/covidstats.png
+Terminal=false
+Type=Application
+Categories=Books and Reference; #adjust accordingly your snap category
