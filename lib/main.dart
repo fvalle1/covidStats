@@ -54,7 +54,7 @@ class _MyViewState extends State<MyView> {
   @override
   Widget build(BuildContext context) {
     final appcastURL =
-        'https://zotviewer.site/appcast.xml';
+        'https://developer.fvalle.online/appcast.xml';
     final cfg = AppcastConfiguration(url: appcastURL, supportedOS: ['android']);
 
     return CupertinoPageScaffold(
