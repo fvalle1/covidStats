@@ -53,8 +53,7 @@ class _MyViewState extends State<MyView> {
 
   @override
   Widget build(BuildContext context) {
-    final appcastURL =
-        'https://zotviewer.site/appcast.xml';
+    final appcastURL = 'https://developer.fvalle.online/appcast.xml';
     final cfg = AppcastConfiguration(url: appcastURL, supportedOS: ['android']);
 
     return CupertinoPageScaffold(
@@ -65,9 +64,8 @@ class _MyViewState extends State<MyView> {
         ),
         child: CupertinoTabScaffold(
           tabBuilder: (context, _selectedIndex) => UpgradeAlert(
-            appcastConfig: cfg,
-            debugLogging: true,
-            countryCode: 'it',
+            upgrader: Upgrader(
+                appcastConfig: cfg, debugLogging: true, countryCode: 'it'),
             child: _pagesOptions.elementAt(_selectedIndex),
           ),
           tabBar: CupertinoTabBar(
